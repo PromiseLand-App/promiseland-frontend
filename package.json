@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@headlessui/react": "^1.7.0",
+    "@rainbow-me/rainbowkit": "^0.5.1",
+    "ethers": "^5.7.0",
+    "graphql": "^16.6.0",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "wagmi": "^0.6.5"
   },
   "devDependencies": {
     "@types/node": "18.7.14",
