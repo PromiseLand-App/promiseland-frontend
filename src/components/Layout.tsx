@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 // import Footer from "./Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <div className="font-serif flex flex-col min-h-screen">
       <Navbar />
