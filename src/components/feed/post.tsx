@@ -2,7 +2,6 @@ import IPost from "@/schemas/post";
 import {
   BookmarkIcon,
   EmojiCollection,
-  HeartIcon,
   MessageIcon,
   ShareIcon,
 } from "@/assets/icons";
@@ -27,7 +26,6 @@ const Post = ({ post }: IProps) => {
             {post.action} a NFT
           </h2>
         </div>
-        {/* <DotsHorizontalIcon className="w-5 h-5 cursor-pointer" /> */}
       </div>
       {/* Posted Image */}
       <div className="relative -mx-5 aspect-square overflow-hidden">
