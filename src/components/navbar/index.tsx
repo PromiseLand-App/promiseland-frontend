@@ -2,12 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useDisconnect } from "wagmi";
 import Navmenu from "./Navmenu";
+import { useWeb3 } from "@/context/ Web3Context";
 
 export default function Navbar() {
-  const { data: account } = useAccount();
-  const { disconnect } = useDisconnect();
+  const { address } = useWeb3();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -30,15 +29,11 @@ export default function Navbar() {
               </div>
               <div className="ml-10 space-x-4 flex items-center">
                 <Link href="/create-post">
-                  <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-500  border-indigo-100 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700  border-indigo-100 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Create A NFT Post
                   </a>
                 </Link>
-                {account ? (
-                  <Navmenu account={account} disconnect={() => disconnect()} />
-                ) : (
-                  <ConnectButton />
-                )}
+                {address ? <Navmenu /> : <ConnectButton />}
               </div>
             </div>
           </nav>

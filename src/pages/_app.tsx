@@ -5,6 +5,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
+import Web3ContextProvider from "@/context/ Web3Context";
 
 const infuraId: string | any = process.env.NEXT_PUBLIC_INFURA_ID;
 
@@ -29,7 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
+        <Web3ContextProvider>
+          <Component {...pageProps} />
+        </Web3ContextProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
