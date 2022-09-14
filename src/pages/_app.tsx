@@ -5,14 +5,13 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
-import Layout from "@/components/layout";
 
 const infuraId: string | any = process.env.NEXT_PUBLIC_INFURA_ID;
 
 const { chains, provider } = configureChains(
   [chain.polygon],
 
-  [infuraProvider({ infuraId }), publicProvider()],
+  [infuraProvider({ infuraId }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
@@ -30,9 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>
   );
