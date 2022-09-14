@@ -6,6 +6,7 @@ interface IPost {
   description: string;
   likes: string;
   createdAt: string;
+  action: string;
 }
 
 export default IPost;

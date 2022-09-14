@@ -1,4 +1,3 @@
-import { DotsHorizontalIcon } from "@heroicons/react/outline";
 import IPost from "@/schemas/post";
 import {
   BookmarkIcon,
@@ -7,6 +6,8 @@ import {
   MessageIcon,
   ShareIcon,
 } from "@/assets/icons";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 
 interface IProps {
   post: IPost;
@@ -21,7 +22,10 @@ const Post = ({ post }: IProps) => {
           <div className="w-8 h-8 overflow-hidden rounded-full cursor-pointer">
             <img className="w-full" src={post.profile} alt={post.profile} />
           </div>
-          <h2 className=" font-semibold">{post.username}</h2>
+          <h2 className="font-semibold">{post.username}</h2>
+          <h2 className="font-semibold text-xs text-slate-500">
+            {post.action} a NFT
+          </h2>
         </div>
         {/* <DotsHorizontalIcon className="w-5 h-5 cursor-pointer" /> */}
       </div>
@@ -31,19 +35,20 @@ const Post = ({ post }: IProps) => {
       </div>
       {/* Actions */}
       <div className="space-y-2">
+        <p>
+          <span className="font-semibold">{post.username}: </span>
+          {post.description}
+        </p>
         <div className="flex justify-between mb-2">
           <div className="flex items-center gap-4">
-            <HeartIcon />
+            <ThumbUpOffAltIcon />
+            <ThumbDownOffAltIcon />
             <MessageIcon />
             <ShareIcon />
           </div>
           <BookmarkIcon />
         </div>
         <span className=" font-semibold">{`${post.likes} likes`}</span>
-        <p>
-          <span className="font-semibold">{post.username} </span>
-          {post.description}
-        </p>
         <h3 className="text-xs text-gray-500">{post.createdAt}</h3>
       </div>
 

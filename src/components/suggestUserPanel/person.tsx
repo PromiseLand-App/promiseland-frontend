@@ -15,7 +15,7 @@ const Person = ({ person }: IProps) => {
 
         <div className="text-xs">
           <h3 className="font-semibold text-sm">{person.username}</h3>
-          <h4 className="opacity-50">Followed by {person.followedBy}</h4>
+          {/* <h4 className="opacity-50">Followed by {person.followedBy}</h4> */}
         </div>
       </div>
 

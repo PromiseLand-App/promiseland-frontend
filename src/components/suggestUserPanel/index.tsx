@@ -7,7 +7,7 @@ const Panel = () => {
   return (
     <section className="w-[22rem] hidden lg:block lg:fixed ml-[30.5rem] space-y-4 pt-4 px-4">
       <div className="flex items-center justify-between">
-        <h1 className="font-semibold opacity-50">Suggestions Uers For You</h1>
+        <h1 className="font-semibold opacity-50">Suggestted Uers For You</h1>
         <Button blacked>See All</Button>
       </div>
 
