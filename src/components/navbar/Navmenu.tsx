@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import joinClassNames from "@/utils/joinClassNames";
-import { useWeb3 } from "@/context/ Web3Context";
+import { useWeb3 } from "@/context/Web3Context";
 import { useDisconnect } from "wagmi";
 
 export default function Navmenu() {

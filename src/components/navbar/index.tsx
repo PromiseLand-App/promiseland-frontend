@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Navmenu from "./Navmenu";
-import { useWeb3 } from "@/context/ Web3Context";
+import { useWeb3 } from "@/context/Web3Context";
 
 export default function Navbar() {
   const { address } = useWeb3();
