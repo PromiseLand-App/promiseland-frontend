@@ -1,9 +1,27 @@
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import people from "./mockUserData";
 import IPerson from "../../schemas/person";
 import Button from "./button";
 import Person from "./person";
+import client from "@/lib/apolloClient";
+import RecommendedProfiles from "@/graphql/RecommendedProfiles";
 
 const Panel = () => {
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
+  async function fetchProfiles() {
+    try {
+      const response = await client.query(RecommendedProfiles).toPromise();
+      console.log({ response });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <section className="w-[22rem] hidden lg:block lg:fixed ml-[30.5rem] space-y-4 pt-4 px-4">
       <div className="flex items-center justify-between">
