@@ -2,25 +2,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import people from "./mockUserData";
-import IPerson from "../../schemas/person";
+import IPerson from "@/schemas/person";
 import Button from "./button";
 import Person from "./person";
 import client from "@/lib/apolloClient";
-import RecommendedProfiles from "@/graphql/RecommendedProfiles";
+import { recommendedProfiles } from "@/graphql/recommendedProfiles";
+import { useQuery, gql } from "@apollo/client";
 
 const Panel = () => {
-  useEffect(() => {
-    fetchProfiles();
-  }, []);
+  const { loading, error, data } = useQuery(recommendedProfiles);
 
-  async function fetchProfiles() {
-    try {
-      const response = await client.query(RecommendedProfiles).toPromise();
-      console.log({ response });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  if (loading) return "Loading..";
+  if (error) return `Error! ${error.message}`;
 
   return (
     <section className="w-[22rem] hidden lg:block lg:fixed ml-[30.5rem] space-y-4 pt-4 px-4">
@@ -30,7 +23,7 @@ const Panel = () => {
       </div>
 
       <div className="space-y-4">
-        {people.map((person: IPerson) => (
+        {data.recommendedProfiles.map((person: IPerson, index: number) => (
           <Person key={person.id} person={person} />
         ))}
       </div>

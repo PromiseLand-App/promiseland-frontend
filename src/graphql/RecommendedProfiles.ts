@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const RecommendedProfiles = gql`
+export const recommendedProfiles = gql`
   query RecommendedProfiles {
     recommendedProfiles {
       id
