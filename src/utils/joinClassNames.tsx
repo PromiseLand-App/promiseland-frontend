@@ -1,4 +1,4 @@
-function joinClassNames(...classes) {
+function joinClassNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
