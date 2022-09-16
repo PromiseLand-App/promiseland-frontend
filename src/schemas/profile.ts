@@ -4,6 +4,7 @@ interface IProfile {
   username: string;
   followedBy: string;
   handle: string;
+  bio: string;
 }
 
 export default IProfile;
