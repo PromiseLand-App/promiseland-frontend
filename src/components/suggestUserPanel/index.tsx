@@ -4,7 +4,6 @@ import { recommendedProfiles } from '@/graphql/RecommendedProfiles';
 import IPerson from '@/schemas/person';
 
 import Button from './button';
-import people from './mockUserData';
 import Person from './person';
 
 const Panel = () => {
@@ -22,7 +21,7 @@ const Panel = () => {
         </div>
 
         <div className="space-y-4">
-          {people.map((person: IPerson) => (
+          {data.recommendedProfiles.map((person: IPerson) => (
             <Person key={person.id} person={person} />
           ))}
         </div>
