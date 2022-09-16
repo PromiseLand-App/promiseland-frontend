@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 
 import { recommendedProfiles } from '@/graphql/RecommendedProfiles';
-import IPerson from '@/schemas/person';
+import IProfile from '@/schemas/profile';
 
 import Button from './button';
 import Person from './person';
@@ -21,8 +21,8 @@ const Panel = () => {
         </div>
 
         <div className="space-y-4">
-          {data.recommendedProfiles.map((person: IPerson) => (
-            <Person key={person.id} person={person} />
+          {data.recommendedProfiles.map((profile: IProfile) => (
+            <Person key={profile.id} profile={profile} />
           ))}
         </div>
       </section>

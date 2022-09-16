@@ -1,4 +1,4 @@
-interface IPerson {
+interface IProfile {
   id: string;
   image: string;
   username: string;
@@ -6,4 +6,4 @@ interface IPerson {
   handle: string;
 }
 
-export default IPerson;
+export default IProfile;
