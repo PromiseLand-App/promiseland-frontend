@@ -1,12 +1,12 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Navmenu from "./Navmenu";
-import { useWeb3 } from "@/context/Web3Context";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
+
+import Navmenu from './Navmenu';
 
 export default function Navbar() {
-  const { address } = useWeb3();
+  const { address } = useAccount();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -16,20 +16,20 @@ export default function Navbar() {
   return (
     <div>
       {mounted && (
-        <header className="bg-white border-b-2 border-gray-100">
+        <header className="border-b-2 border-gray-100 bg-white">
           <nav
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
             aria-label="Top"
           >
-            <div className="w-full py-6 flex flex-wrap items-center justify-between border-b border-indigo-500 lg:border-none">
+            <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
               <div className="flex items-center">
                 <Link href="/">
                   <a>PromiseLand</a>
                 </Link>
               </div>
-              <div className="ml-10 space-x-4 flex items-center">
+              <div className="ml-10 flex items-center space-x-4">
                 <Link href="/create-post">
-                  <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700  border-indigo-100 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <a className="inline-flex items-center rounded-md border border-indigo-100 px-4 py-2 text-sm font-medium  text-indigo-700 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Create A NFT Post
                   </a>
                 </Link>

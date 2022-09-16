@@ -1,5 +1,4 @@
-import Header from "./header";
-// import Footer from "./Footer";
+import Header from './header';
 
 interface IProps {
   children: React.ReactNode;
@@ -7,10 +6,11 @@ interface IProps {
 
 const Layout = ({ children }: IProps) => {
   return (
-    <div className="space-y-5 min-h-screen">
+    <div className="min-h-screen space-y-5">
       <Header />
-      <main className="max-w-[53rem] mx-auto lg:flex mb-10">{children}</main>
-      {/* <Footer /> */}
+      <main className="mx-auto max-w-[53rem] justify-between pb-10 lg:flex">
+        {children}
+      </main>
     </div>
   );
 };

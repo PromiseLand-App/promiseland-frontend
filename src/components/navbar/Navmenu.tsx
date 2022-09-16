@@ -1,19 +1,18 @@
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import joinClassNames from "@/utils/joinClassNames";
-import { useWeb3 } from "@/context/Web3Context";
-import { useDisconnect } from "wagmi";
+import { Menu, Transition } from '@headlessui/react';
+import clsx from 'clsx';
+import { Fragment } from 'react';
+import { useAccount, useDisconnect } from 'wagmi';
 
 export default function Navmenu() {
-  const { address } = useWeb3();
+  const { address } = useAccount();
   const { disconnect } = useDisconnect();
 
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex items-center px-2.5 py-2 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 w-32 cursor-pointer">
-          <span className="w-12 h-3 mr-1 bg-indigo-400 rounded-full"> </span>
-          <p className="text-ellipsis overflow-hidden">{address}</p>
+        <Menu.Button className="inline-flex w-32 cursor-pointer items-center rounded-md bg-indigo-100 px-2.5 py-2 text-sm font-medium text-indigo-800">
+          <span className="mr-1 h-3 w-12 rounded-full bg-indigo-400"> </span>
+          <p className="overflow-hidden text-ellipsis">{address}</p>
         </Menu.Button>
       </div>
       <Transition
@@ -25,15 +24,15 @@ export default function Navmenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {(address) => (
                 <a
                   href={`/profile`}
-                  className={joinClassNames(
-                    address ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
+                  className={clsx(
+                    address ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm',
                   )}
                 >
                   My Profile
@@ -44,9 +43,9 @@ export default function Navmenu() {
               {(address) => (
                 <a
                   href={`/my-posts`}
-                  className={joinClassNames(
-                    address ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
+                  className={clsx(
+                    address ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm',
                   )}
                 >
                   My Posts
@@ -57,9 +56,9 @@ export default function Navmenu() {
               {(address) => (
                 <a
                   onClick={() => disconnect}
-                  className={joinClassNames(
-                    address ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm cursor-pointer"
+                  className={clsx(
+                    address ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block cursor-pointer px-4 py-2 text-sm',
                   )}
                 >
                   Log Out

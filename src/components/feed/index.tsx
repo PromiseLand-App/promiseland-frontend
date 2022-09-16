@@ -1,5 +1,5 @@
-import posts from "./mockData";
-import Post from "./post";
+import posts from './mockData';
+import Post from './post';
 
 const Feed = () => {
   return (

@@ -1,24 +1,25 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-import { infuraProvider } from "wagmi/providers/infura";
-import { publicProvider } from "wagmi/providers/public";
-import Web3ContextProvider from "@/context/Web3Context";
-import apolloClient from "@/lib/apolloClient";
-import { ApolloProvider } from "@apollo/client";
+import '@/styles/globals.css';
+import '@rainbow-me/rainbowkit/styles.css';
+
+import { ApolloProvider } from '@apollo/client';
+import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import type { AppProps } from 'next/app';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { infuraProvider } from 'wagmi/providers/infura';
+import { publicProvider } from 'wagmi/providers/public';
+
+import apolloClient from '@/lib/apolloClient';
 
 const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
 const { chains, provider } = configureChains(
   [chain.polygon],
 
-  [infuraProvider({ apiKey: infuraId }), publicProvider()]
+  [infuraProvider({ apiKey: infuraId }), publicProvider()],
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "promiseland",
+  appName: 'PromiseLand',
   chains,
 });
 
@@ -28,18 +29,14 @@ const wagmiClient = createClient({
   provider,
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <ApolloProvider client={apolloClient}>
         <RainbowKitProvider chains={chains}>
-          <Web3ContextProvider>
-            <Component {...pageProps} />
-          </Web3ContextProvider>
+          <Component {...pageProps} />
         </RainbowKitProvider>
       </ApolloProvider>
     </WagmiConfig>
   );
 }
-
-export default MyApp;

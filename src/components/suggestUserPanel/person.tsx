@@ -1,5 +1,5 @@
-import IPerson from "../../schemas/person";
-import Button from "./button";
+import IPerson from '../../schemas/person';
+import Button from './button';
 
 interface IProps {
   person: IPerson;
@@ -7,14 +7,14 @@ interface IProps {
 
 const Person = ({ person }: IProps) => {
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex gap-3 items-center">
-        <div className="rounded-full overflow-hidden w-8 h-8">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <div className="h-8 w-8 overflow-hidden rounded-full">
           <img className="w-full" src={person.image} alt={person.username} />
         </div>
 
         <div className="text-xs">
-          <h3 className="font-semibold text-sm">{person.username}</h3>
+          <h3 className="text-sm font-semibold">{person.username}</h3>
           {/* <h4 className="opacity-50">Followed by {person.followedBy}</h4> */}
         </div>
       </div>

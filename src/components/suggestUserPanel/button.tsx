@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 interface IProps {
   children: React.ReactNode;
   blacked?: boolean;
@@ -6,9 +8,10 @@ interface IProps {
 const Button = ({ children, blacked = false }: IProps) => {
   return (
     <button
-      className={`text-xs text-blue-500 font-semibold ${
-        blacked ? "text-black" : "text-blue-500"
-      }`}
+      className={clsx(
+        'text-xs font-semibold text-blue-500',
+        blacked ? 'text-black' : 'text-blue-500',
+      )}
     >
       {children}
     </button>

@@ -1,3 +1,57 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "tailwindcss",
+    "simple-import-sort",
+    "unused-imports"
+  ],
+  "globals": {
+    "JSX": true
+  },
+  "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "max-len": [
+      2,
+      80,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "prettier/prettier": "error",
+    "react/jsx-first-prop-new-line": [
+      "error",
+      "multiline"
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      2
+    ],
+    "react/jsx-closing-bracket-location": [
+      "error",
+      "tag-aligned"
+    ],
+    "react/jsx-max-props-per-line": [
+      "error",
+      {
+        "maximum": 1,
+        "when": "multiline"
+      }
+    ],
+    "@next/next/no-html-link-for-pages": "off",
+    "@next/next/no-img-element": "off"
+  }
 }

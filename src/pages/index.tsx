@@ -1,7 +1,8 @@
-import type { NextPage } from "next";
-import Feed from "@/components/feed";
-import Panel from "@/components/suggestUserPanel";
-import Layout from "@/components/layout";
+import type { NextPage } from 'next';
+
+import Feed from '@/components/feed';
+import Layout from '@/components/layout';
+import Panel from '@/components/suggestUserPanel';
 
 const Home: NextPage = () => {
   return (

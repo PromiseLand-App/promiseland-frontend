@@ -1,12 +1,13 @@
-import IPost from "@/schemas/post";
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+
 import {
   BookmarkIcon,
   EmojiCollection,
   MessageIcon,
   ShareIcon,
-} from "@/assets/icons";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+} from '@/assets/icons';
+import IPost from '@/schemas/post';
 
 interface IProps {
   post: IPost;
@@ -14,15 +15,15 @@ interface IProps {
 
 const Post = ({ post }: IProps) => {
   return (
-    <div className="relative border-[1px] border-gray-300 rounded-lg bg-white px-5 p-4 max-w-[30rem] mx-auto space-y-4">
+    <div className="relative mx-auto max-w-[30rem] space-y-4 rounded-lg border-[1px] border-gray-300 bg-white p-4 px-5">
       {/* Heading */}
-      <div className="flex justify-between items-center">
-        <div className="flex gap-3 items-center -m-2">
-          <div className="w-8 h-8 overflow-hidden rounded-full cursor-pointer">
+      <div className="flex items-center justify-between">
+        <div className="-m-2 flex items-center gap-3">
+          <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
             <img className="w-full" src={post.profile} alt={post.profile} />
           </div>
           <h2 className="font-semibold">{post.username}</h2>
-          <h2 className="font-semibold text-xs text-slate-500">
+          <h2 className="text-xs font-semibold text-slate-500">
             {post.action} a NFT
           </h2>
         </div>
@@ -37,7 +38,7 @@ const Post = ({ post }: IProps) => {
           <span className="font-semibold">{post.username}: </span>
           {post.description}
         </p>
-        <div className="flex justify-between mb-2">
+        <div className="mb-2 flex justify-between">
           <div className="flex items-center gap-4">
             <ThumbUpOffAltIcon />
             <ThumbDownOffAltIcon />
@@ -50,12 +51,12 @@ const Post = ({ post }: IProps) => {
         <h3 className="text-xs text-gray-500">{post.createdAt}</h3>
       </div>
 
-      <div className="h-[1px] relative left-0 right-0 bg-gray-200 -mx-5"></div>
+      <div className="relative inset-x-0 -mx-5 h-[1px] bg-gray-200"></div>
 
       <div className="flex gap-4">
         <EmojiCollection />
         <input
-          className="focus:outline-none w-full"
+          className="w-full focus:outline-none"
           type="text"
           placeholder="Add a comment"
         />
