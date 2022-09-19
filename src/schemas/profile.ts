@@ -5,6 +5,7 @@ interface IProfile {
   followedBy: string;
   handle: string;
   bio: string;
+  picture: any;
 }
 
 export default IProfile;
