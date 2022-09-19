@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { SpinnerCircular } from 'spinners-react';
 
 import Layout from '@/components/layout';
 import { getProfileById } from '@/graphql/GetProfileById';
@@ -18,9 +19,13 @@ export default function Profile() {
     },
   });
 
-  if (loading) return 'Loading..';
+  if (loading)
+    return (
+      <Layout>
+        <SpinnerCircular />
+      </Layout>
+    );
   if (error) return `Error! ${error.message}`;
-  console.log('Profile', profile);
 
   return (
     <Layout>
