@@ -8,7 +8,7 @@ import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 
-import apolloClient from '@/lib/apolloClient';
+import apolloClient from '@/lib/client';
 
 const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
