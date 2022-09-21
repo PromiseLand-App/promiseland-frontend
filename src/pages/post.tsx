@@ -95,85 +95,69 @@ const Post: NextPage = () => {
   }
   return (
     <Layout>
-      <div className="flex flex-col place-items-center mt-10" id="nftForm">
-        <form className="bg-white shadow-md rounded px-8 pt-4 pb-8 mb-4">
-          <h3 className="mb-8 text-center font-bold text-blue-500">
-            Upload your NFT to the marketplace
-          </h3>
-          <div className="mb-4">
-            <label
-              className="block text-blue-500 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              NFT Name
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              type="text"
-              placeholder="Axie#4563"
-              onChange={(e) =>
-                updateFormParams({ ...formParams, name: e.target.value })
-              }
-              value={formParams.name}
-            ></input>
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-blue-500 text-sm font-bold mb-2"
-              htmlFor="description"
-            >
-              NFT Description
-            </label>
-            <textarea
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              cols="40"
-              rows="5"
-              id="description"
-              type="text"
-              placeholder="Axie Infinity Collection"
-              value={formParams.description}
-              onChange={(e) =>
-                updateFormParams({ ...formParams, description: e.target.value })
-              }
-            ></textarea>
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-blue-500 text-sm font-bold mb-2"
-              htmlFor="price"
-            >
-              Price (in ETH)
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="number"
-              placeholder="Min 0.01 ETH"
-              step="0.01"
-              value={formParams.price}
-              onChange={(e) =>
-                updateFormParams({ ...formParams, price: e.target.value })
-              }
-            ></input>
-          </div>
-          <div>
-            <label
-              className="block text-blue-500 text-sm font-bold mb-2"
-              htmlFor="image"
-            >
-              Upload Image
-            </label>
-            <input type={'file'} onChange={OnChangeFile}></input>
-          </div>
-          <br></br>
-          <div className="text-green text-center">{message}</div>
-          <button
-            onClick={listNFT}
-            className="font-bold mt-10 w-full bg-blue-500 text-white rounded p-2 shadow-lg"
-          >
-            List NFT
-          </button>
-        </form>
+      <div className="mt-10 flex flex-col justify-center" id="nftForm">
+        <div className="mb-8 text-lg font-bold">Create your NFT post</div>
+        <div className="mb-4">
+          <label className="block  text-sm font-bold mb-2" htmlFor="name">
+            Name
+          </label>
+          <input
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            id="name"
+            type="text"
+            placeholder="PromiseLand"
+            onChange={(e) =>
+              updateFormParams({ ...formParams, name: e.target.value })
+            }
+            value={formParams.name}
+          ></input>
+        </div>
+        <div className="mb-6">
+          <label className="mb-2 block text-sm font-bold" htmlFor="description">
+            Description
+          </label>
+          <textarea
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            cols="40"
+            rows="5"
+            id="description"
+            type="text"
+            placeholder="PromiseLand Collection"
+            value={formParams.description}
+            onChange={(e) =>
+              updateFormParams({ ...formParams, description: e.target.value })
+            }
+          ></textarea>
+        </div>
+        <div className="mb-6">
+          <label className="block  text-sm font-bold mb-2" htmlFor="price">
+            Price
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="number"
+            placeholder="Min 0.025 ETH"
+            step="0.01"
+            value={formParams.price}
+            onChange={(e) =>
+              updateFormParams({ ...formParams, price: e.target.value })
+            }
+          ></input>
+        </div>
+        <div>
+          <label className="block  text-sm font-bold mb-2" htmlFor="image">
+            Upload Image
+          </label>
+          <input type={'file'} onChange={OnChangeFile}></input>
+        </div>
+        <br></br>
+        <div className="text-green text-center">{message}</div>
+        <button
+          onClick={listNFT}
+          className="mt-10 w-20 rounded-2xl bg-blue-500 p-2 font-bold text-white shadow-lg"
+        >
+          Create
+        </button>
       </div>
     </Layout>
   );
