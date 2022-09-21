@@ -29,7 +29,7 @@ export default function Navbar() {
               </div>
               <div className="ml-10 flex items-center space-x-4">
                 <Link href="/post">
-                  <a className="inline-flex items-center rounded-md border border-indigo-100 px-4 py-2 text-sm font-medium  text-indigo-700 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <a className="inline-flex items-center rounded-full border border-indigo-100 px-4 py-2 text-sm font-medium  text-indigo-700 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Create A NFT Post
                   </a>
                 </Link>

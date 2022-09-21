@@ -10,7 +10,7 @@ export default function Navmenu() {
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-32 cursor-pointer items-center rounded-md bg-indigo-100 px-2.5 py-2 text-sm font-medium text-indigo-800">
+        <Menu.Button className="inline-flex w-32 cursor-pointer items-center rounded-full bg-indigo-100 px-2.5 py-2 text-sm font-medium text-indigo-800">
           <span className="mr-1 h-3 w-12 rounded-full bg-indigo-400"> </span>
           <p className="overflow-hidden text-ellipsis">{address}</p>
         </Menu.Button>
@@ -24,7 +24,7 @@ export default function Navmenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {(address) => (

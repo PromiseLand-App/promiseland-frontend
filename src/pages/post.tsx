@@ -6,8 +6,6 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/pinata';
 
 import PromiseLand from '../abi/PromiseLand.json';
 
-im;
-
 const Post: NextPage = () => {
   const [formParams, updateFormParams] = useState({
     name: '',
