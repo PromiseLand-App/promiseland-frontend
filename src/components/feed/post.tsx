@@ -21,10 +21,8 @@ const Post = ({ post }: IProps) => {
           <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
             <img className="w-full" src={post.image} alt={post.profile} />
           </div>
-          <h2 className="font-semibold">{post.owner}</h2>
-          <h2 className="text-xs font-semibold text-slate-500">
-            {post.action} a NFT
-          </h2>
+          <h2 className="font-semibold">{post.seller}</h2>
+          <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
       </div>
       {/* Posted Image */}
@@ -34,7 +32,7 @@ const Post = ({ post }: IProps) => {
       {/* Actions */}
       <div className="space-y-2">
         <p>
-          <span className="font-semibold">{post.owner}: </span>
+          <span className="font-semibold">{post.seller}: </span>
           {post.description}
         </p>
         <div className="mb-2 flex justify-between">

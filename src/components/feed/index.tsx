@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
-
+import { SpinnerCircular } from 'spinners-react';
 import PromiseLand from '../../abi/PromiseLand.json';
 import Post from './post';
 
@@ -53,12 +53,15 @@ const Feed = () => {
     setLoadingState('loaded');
   }
 
-  if (loadingState === 'loaded' && !nfts.length)
-    return <h1 className="px-20 py-10 text-3xl">No items in market place</h1>;
+  if (loadingState !== 'loaded' && !nfts.length) return <SpinnerCircular />;
 
   return (
     <section className="space-y-3">
-      {nfts && nfts.map((post, index) => <Post key={index} post={post} />)}
+      {nfts &&
+        nfts
+          .slice(0)
+          .reverse()
+          .map((post, index) => <Post key={index} post={post} />)}
     </section>
   );
 };
