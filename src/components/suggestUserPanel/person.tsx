@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import IProfile from '../../schemas/profile';
-import Button from './button';
+import FollowButton from './followButton';
 
 interface IProps {
   profile: IProfile;
@@ -38,7 +38,7 @@ const Profile = ({ profile }: IProps) => {
         </div>
       </div>
 
-      <Button>Follow</Button>
+      <FollowButton />
     </div>
   );
 };

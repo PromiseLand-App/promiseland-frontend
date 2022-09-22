@@ -23,6 +23,9 @@
       "@/components/*": [
         "src/components/*"
       ],
+      "@/abis/*": [
+        "src/abis/*"
+      ],
       "@/feature/*": [
         "src/feature/*"
       ],

@@ -3,7 +3,8 @@ import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import { SpinnerCircular } from 'spinners-react';
 
-import PromiseLand from '../../abi/PromiseLand.json';
+import PromiseLand from '@/abis/PromiseLand.json';
+
 import Post from './post';
 
 const Feed = () => {

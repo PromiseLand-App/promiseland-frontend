@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { recommendedProfiles } from '@/graphql/RecommendedProfiles';
 import IProfile from '@/schemas/profile';
 
-import Button from './button';
 import Person from './person';
 
 const Panel = () => {
@@ -17,7 +16,7 @@ const Panel = () => {
       <section className="sticky top-[7rem] space-y-4">
         <div className="flex items-center justify-between">
           <h1 className="font-semibold opacity-50">Suggestted Uers For You</h1>
-          <Button blacked>See All</Button>
+          <button>See All</button>
         </div>
 
         <div className="space-y-4">

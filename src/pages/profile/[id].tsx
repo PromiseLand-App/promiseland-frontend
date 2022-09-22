@@ -12,7 +12,7 @@ export default function Profile() {
   const { id } = router.query;
   const [profile, setProfile] = useState();
 
-  const { loading, error, data } = useQuery(getProfileById, {
+  const { loading, error } = useQuery(getProfileById, {
     variables: { id },
     onCompleted(data) {
       setProfile(data?.profile);
@@ -31,12 +31,12 @@ export default function Profile() {
     <Layout>
       <div className="my-12">
         {profile && (
-          <div className="flex flex-wrap md:flex-nowrap items-start w-full">
-            <div className="w-full md:w-auto mb-4 md:mr-8">
+          <div className="flex w-full flex-wrap items-start md:flex-nowrap">
+            <div className="mb-4 w-full md:mr-8 md:w-auto">
               {profile?.picture &&
               profile?.picture.original &&
               profile?.picture.original.url.includes('lens.infura-ipfs.io') ? (
-                <div className="relative w-60 h-60 bg-emerald-900 rounded mx-auto">
+                <div className="relative mx-auto h-60 w-60 rounded bg-emerald-900">
                   <Image
                     src={profile.picture.original.url}
                     layout="fill"
@@ -46,27 +46,31 @@ export default function Profile() {
                   />
                 </div>
               ) : (
-                <div className="bg-emerald-900 w-60 h-60 rounded mx-auto" />
+                <div className="mx-auto h-60 w-60 rounded bg-emerald-900" />
               )}
             </div>
-            <div className="grow-1 w-full">
+            <div className="w-full">
               <div className="text-center md:text-left">
-                <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl sm:tracking-tight mb-1">
-                  {profile.name}
+                <h1 className="mb-1 text-3xl font-bold text-gray-900 sm:text-4xl sm:tracking-tight">
+                  {profile?.name}
                 </h1>
-                <h2 className="text-xl font-bold text-emerald-500 sm:text-2xl sm:tracking-tight mb-2">
-                  {profile.handle}
+
+                <h2 className="mb-2 text-xl font-bold text-emerald-500 sm:text-2xl sm:tracking-tight">
+                  {profile?.handle}
                 </h2>
-                <div className="flex flex-wrap gap-x-2 text-gray-600 text-sm sm:text-base mb-4 justify-center md:justify-start">
+                <h2 className="mb-2 text-xl font-bold text-black sm:text-2xl sm:tracking-tight">
+                  {profile?.ownedBy}
+                </h2>
+                <div className="mb-4 flex flex-wrap justify-center gap-x-2 text-sm text-gray-600 sm:text-base md:justify-start">
                   <p>
-                    <span className="text-gray-900 font-medium">
-                      {profile.stats.totalFollowers}
+                    <span className="font-medium text-gray-900">
+                      {profile?.stats?.totalFollowers}
                     </span>{' '}
                     Followers
                   </p>
                   <p>
-                    <span className="text-gray-900 font-medium">
-                      {profile.stats.totalFollowing}
+                    <span className="font-medium text-gray-900">
+                      {profile?.stats?.totalFollowing}
                     </span>{' '}
                     Following
                   </p>
