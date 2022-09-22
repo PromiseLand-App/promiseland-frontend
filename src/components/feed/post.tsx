@@ -7,6 +7,7 @@ import {
   ShareIcon,
 } from '@/assets/icons';
 import IPost from '@/schemas/post';
+import { trimAddress } from '@/utils/helper';
 
 interface IProps {
   post: IPost;
@@ -21,12 +22,12 @@ const Post = ({ post }: IProps) => {
           <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
             <img className="w-full" src={post.image} alt={post.profile} />
           </div>
-          <h2 className="font-semibold">{post.seller}</h2>
+          <h2 className="font-semibold">{trimAddress(post.seller)}</h2>
           <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
       </div>
       {/* Posted Image */}
-      <div className="relative -mx-5 aspect-square overflow-hidden">
+      <div className="relative -mx-5 overflow-hidden">
         <img className="w-full" src={post.image} alt={post.username} />
       </div>
       {/* Actions */}
@@ -38,7 +39,6 @@ const Post = ({ post }: IProps) => {
         <div className="mb-2 flex justify-between">
           <div className="flex items-center gap-4">
             <ThumbUpOffAltIcon />
-
             <MessageIcon />
             <ShareIcon />
           </div>
