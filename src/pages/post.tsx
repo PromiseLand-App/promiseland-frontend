@@ -1,8 +1,23 @@
+import { BigNumber } from 'ethers';
+import { parseEther } from 'ethers/lib/utils';
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import {
+  useContractRead,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from 'wagmi';
 
 import Layout from '@/components/layout';
-import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/pinata';
+import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/web3Storage';
 
 import PromiseLand from '../abi/PromiseLand.json';
 
@@ -12,28 +27,56 @@ const Post: NextPage = () => {
     description: '',
     price: '',
   });
-  const [fileURL, setFileURL] = useState(null);
-  const ethers = require('ethers');
+
+  const priceInEth = useMemo(
+    () => (formParams.price ? parseEther(formParams.price) : undefined),
+    [formParams.price],
+  );
+  const { data: listingPriceResult } = useContractRead({
+    addressOrName: PromiseLand.address,
+    contractInterface: PromiseLand.abi,
+    functionName: 'getListingPrice',
+  });
+  const listingPrice = listingPriceResult?.[0] as BigNumber | undefined;
+
+  const [fileURL, setFileURL] = useState('');
+  const [metadataURL, setMetadataURL] = useState('');
   const [message, updateMessage] = useState('');
+  const { config } = usePrepareContractWrite({
+    addressOrName: PromiseLand.address,
+    contractInterface: PromiseLand.abi,
+    functionName: 'createToken',
+    args: [metadataURL, priceInEth],
+    overrides: { value: listingPrice },
+    enabled: Boolean(metadataURL && priceInEth && listingPrice),
+  });
+  const { data, write, error } = useContractWrite(config);
+  const { data: receipt } = useWaitForTransaction({
+    hash: data?.hash,
+  });
+
+  console.log({ config });
 
   //This function uploads the NFT image to IPFS
-  async function OnChangeFile(e) {
-    var file = e.target.files[0];
-    //check for file extension
-    try {
-      //upload the file to IPFS
-      const response = await uploadFileToIPFS(file);
-      if (response.success === true) {
-        console.log('Uploaded image to Pinata: ', response.pinataURL);
-        setFileURL(response.pinataURL);
+  const onChangeFile: ChangeEventHandler<HTMLInputElement> = useCallback(
+    async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      //check for file extension
+      try {
+        //upload the file to IPFS
+        const url = await uploadFileToIPFS(file);
+        console.log('Uploaded image to IPFS: ', url);
+        setFileURL(url);
+      } catch (e) {
+        console.log('Error during file upload', e);
       }
-    } catch (e) {
-      console.log('Error during file upload', e);
-    }
-  }
+    },
+    [],
+  );
 
   //This function uploads the metadata to IPDS
-  async function uploadMetadataToIPFS() {
+  const uploadMetadataToIPFS = useCallback(async () => {
     const { name, description, price } = formParams;
     //Make sure that none of the fields are empty
     if (!name || !description || !price || !fileURL) return;
@@ -47,67 +90,61 @@ const Post: NextPage = () => {
 
     try {
       //upload the metadata JSON to IPFS
-      const response = await uploadJSONToIPFS(nftJSON);
-      if (response.success === true) {
-        console.log('Uploaded JSON to Pinata: ', response);
-        return response.pinataURL;
-      }
+      const url = await uploadJSONToIPFS(nftJSON);
+      console.log('Uploaded JSON to IPFS: ', url);
+      setMetadataURL(url);
     } catch (e) {
       console.log('error uploading JSON metadata:', e);
     }
-  }
+  }, [fileURL, formParams]);
 
-  async function listNFT(e) {
-    e.preventDefault();
+  const createNFT: MouseEventHandler<HTMLButtonElement> = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    //Upload data to IPFS
-    try {
-      const metadataURL = await uploadMetadataToIPFS();
-      //After adding your Hardhat network to your metamask, this code will get providers and signers
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      updateMessage('Please wait.. uploading (upto 5 mins)');
+      //Upload data to IPFS
+      try {
+        await uploadMetadataToIPFS();
+        updateMessage('Please wait.. uploading (upto 5 mins)');
+      } catch (e) {
+        alert('Upload error' + e);
+      }
+    },
+    [uploadMetadataToIPFS],
+  );
 
-      //Pull the deployed contract instance
-      const contract = new ethers.Contract(
-        PromiseLand.address,
-        PromiseLand.abi,
-        signer,
-      );
+  useEffect(() => {
+    write?.();
+  }, [write]);
 
-      //massage the params to be sent to the create NFT request
-      const price = ethers.utils.parseUnits(formParams.price, 'ether');
-      let listingPrice = await contract.getListingPrice();
-      listingPrice = listingPrice.toString();
+  useEffect(() => {
+    if (!receipt) return;
+    alert('Successfully listed your NFT!');
+    updateMessage('');
+    updateFormParams({ name: '', description: '', price: '' });
+  }, [receipt]);
 
-      //actually create the NFT
-      let transaction = await contract.createToken(metadataURL, price, {
-        value: listingPrice,
-      });
-      await transaction.wait();
-
-      alert('Successfully listed your NFT!');
-      updateMessage('');
-      updateFormParams({ name: '', description: '', price: '' });
-    } catch (e) {
-      alert('Upload error' + e);
+  useEffect(() => {
+    if (error) {
+      alert(`Upload error ${error}`);
     }
-  }
+  }, [error]);
+
   return (
     <Layout>
       <div className="mt-10 flex flex-col justify-center" id="nftForm">
         <div className="mb-8 text-lg font-bold">Create your NFT post</div>
         <div className="mb-4">
-          <label className="block  text-sm font-bold mb-2" htmlFor="name">
+          <label className="mb-2  block text-sm font-bold" htmlFor="name">
             Name
           </label>
           <input
-            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
             id="name"
             type="text"
             placeholder="PromiseLand"
             onChange={(e) =>
-              updateFormParams({ ...formParams, name: e.target.value })
+              updateFormParams((prev) => ({ ...prev, name: e.target.value }))
             }
             value={formParams.name}
           ></input>
@@ -117,43 +154,49 @@ const Post: NextPage = () => {
             Description
           </label>
           <textarea
-            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-            cols="40"
-            rows="5"
+            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            cols={40}
+            rows={5}
             id="description"
-            type="text"
             placeholder="PromiseLand Collection"
             value={formParams.description}
             onChange={(e) =>
-              updateFormParams({ ...formParams, description: e.target.value })
+              updateFormParams((prev) => ({
+                ...prev,
+                description: e.target.value,
+              }))
             }
           ></textarea>
         </div>
         <div className="mb-6">
-          <label className="block  text-sm font-bold mb-2" htmlFor="price">
+          <label className="mb-2  block text-sm font-bold" htmlFor="price">
             Price
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
             type="number"
             placeholder="Min 0.025 ETH"
             step="0.01"
             value={formParams.price}
             onChange={(e) =>
-              updateFormParams({ ...formParams, price: e.target.value })
+              updateFormParams((prev) => ({ ...prev, price: e.target.value }))
             }
           ></input>
         </div>
         <div>
-          <label className="block  text-sm font-bold mb-2" htmlFor="image">
+          <label className="mb-2  block text-sm font-bold" htmlFor="image">
             Upload Image
           </label>
-          <input type={'file'} onChange={OnChangeFile}></input>
+          <input
+            type="file"
+            accept="image/png, image/jpeg, image/gif"
+            onChange={onChangeFile}
+          ></input>
         </div>
         <br></br>
-        <div className="text-green text-center">{message}</div>
+        <div className="text-center text-green-400">{message}</div>
         <button
-          onClick={listNFT}
+          onClick={createNFT}
           className="mt-10 w-20 rounded-2xl bg-blue-500 p-2 font-bold text-white shadow-lg"
         >
           Create
