@@ -20,7 +20,7 @@ const Post = ({ post }: IProps) => {
       <div className="flex items-center justify-between">
         <div className="-m-2 flex items-center gap-3">
           <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
-            <img className="w-full" src={post.profile} alt={post.profile} />
+            <img className="w-full" src={post.image} alt={post.profile} />
           </div>
           <h2 className="font-semibold">{post.username}</h2>
           <h2 className="text-xs font-semibold text-slate-500">

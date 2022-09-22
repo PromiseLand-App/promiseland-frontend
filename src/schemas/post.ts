@@ -7,6 +7,7 @@ interface IPost {
   likes: string;
   createdAt: string;
   action: string;
+  data: any;
 }
 
 export default IPost;
