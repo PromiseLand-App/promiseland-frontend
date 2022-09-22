@@ -20,7 +20,7 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/web3Storage';
 
 import PromiseLand from '../abi/PromiseLand.json';
 
-const Post: NextPage = () => {
+const Create: NextPage = () => {
   const [formParams, updateFormParams] = useState({
     name: '',
     description: '',
@@ -202,4 +202,4 @@ const Post: NextPage = () => {
   );
 };
 
-export default Post;
+export default Create;
