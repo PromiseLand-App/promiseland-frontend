@@ -29,12 +29,12 @@ export default function Navbar() {
               </div>
               <div className="ml-10 flex items-center space-x-4">
                 <Link href="/">
-                  <a className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium  text-blue-700 hover:text-blue-300 ">
+                  <a className="inline-flex items-center rounded-full px-3 py-2 text-sm font-medium  text-blue-500 hover:text-blue-300 ">
                     Expore
                   </a>
                 </Link>
                 <Link href="/post">
-                  <a className="inline-flex items-center rounded-full  px-4 py-2 text-sm font-medium  text-blue-700 hover:text-blue-300 ">
+                  <a className="inline-flex items-center rounded-full  px-3 py-2 text-sm font-medium  text-blue-500 hover:text-blue-300 ">
                     Create
                   </a>
                 </Link>

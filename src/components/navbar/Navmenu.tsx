@@ -48,7 +48,7 @@ export default function Navmenu() {
                     'block px-4 py-2 text-sm',
                   )}
                 >
-                  My Posts
+                  Setting
                 </a>
               )}
             </Menu.Item>
