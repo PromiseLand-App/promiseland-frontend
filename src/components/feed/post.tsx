@@ -55,7 +55,7 @@ const Post = ({ post }: IProps) => {
         <input
           className="w-full focus:outline-none"
           type="text"
-          placeholder="Add a comment"
+          placeholder="Add a comment (Comming soon)"
         />
         <button className="text-blue-500">Post</button>
       </div>
