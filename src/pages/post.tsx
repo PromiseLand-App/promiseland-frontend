@@ -1,4 +1,3 @@
-import { BigNumber } from 'ethers';
 import { parseEther } from 'ethers/lib/utils';
 import type { NextPage } from 'next';
 import {
@@ -32,12 +31,11 @@ const Post: NextPage = () => {
     () => (formParams.price ? parseEther(formParams.price) : undefined),
     [formParams.price],
   );
-  const { data: listingPriceResult } = useContractRead({
+  const { data: listingPrice } = useContractRead({
     addressOrName: PromiseLand.address,
     contractInterface: PromiseLand.abi,
     functionName: 'getListingPrice',
   });
-  const listingPrice = listingPriceResult?.[0] as BigNumber | undefined;
 
   const [fileURL, setFileURL] = useState('');
   const [metadataURL, setMetadataURL] = useState('');
@@ -54,8 +52,6 @@ const Post: NextPage = () => {
   const { data: receipt } = useWaitForTransaction({
     hash: data?.hash,
   });
-
-  console.log({ config });
 
   //This function uploads the NFT image to IPFS
   const onChangeFile: ChangeEventHandler<HTMLInputElement> = useCallback(
