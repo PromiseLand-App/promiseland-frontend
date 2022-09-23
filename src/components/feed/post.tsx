@@ -1,4 +1,5 @@
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import Link from 'next/link';
 
 import {
   BookmarkIcon,
@@ -19,9 +20,11 @@ const Post = ({ post }: IProps) => {
       {/* Heading */}
       <div className="flex items-center justify-between">
         <div className="-m-2 flex items-center gap-3">
-          <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
-            <img className="w-full" src={post.image} alt={post.profile} />
-          </div>
+          <Link href={`/profile/${post.seller}`} key={post.seller}>
+            <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
+              <img className="w-full" src={post.image} alt={post.profile} />
+            </div>
+          </Link>
           <h2 className="font-semibold">{trimAddress(post.seller)}</h2>
           <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
