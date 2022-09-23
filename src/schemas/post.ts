@@ -8,6 +8,7 @@ interface IPost {
   createdAt: string;
   action: string;
   data: any;
+  seller: string;
 }
 
 export default IPost;

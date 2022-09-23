@@ -130,11 +130,11 @@ const Create: NextPage = () => {
       <div className="mt-10 flex flex-col justify-center" id="nftForm">
         <div className="mb-8 text-lg font-bold">Create your NFT post</div>
         <div className="mb-4">
-          <label className="mb-2  block text-sm font-bold" htmlFor="name">
+          <label className="mb-2 block text-sm font-bold" htmlFor="name">
             Name
           </label>
           <input
-            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            className="w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700 focus:outline-none"
             id="name"
             type="text"
             placeholder="PromiseLand"
@@ -149,7 +149,7 @@ const Create: NextPage = () => {
             Description
           </label>
           <textarea
-            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            className="w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700 focus:outline-none"
             cols={40}
             rows={5}
             id="description"
@@ -168,7 +168,7 @@ const Create: NextPage = () => {
             Price
           </label>
           <input
-            className="w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            className="w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700  focus:outline-none"
             type="number"
             placeholder="Min 0.025 ETH"
             step="0.01"
@@ -192,7 +192,7 @@ const Create: NextPage = () => {
         <div className="text-center text-green-400">{message}</div>
         <button
           onClick={createNFT}
-          className="mt-10 w-20 rounded-2xl bg-blue-500 p-2 font-bold text-white shadow-lg"
+          className="mt-5 w-20 rounded-2xl bg-blue-500 p-2 font-bold text-white shadow-lg"
         >
           Create
         </button>
