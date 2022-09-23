@@ -59,7 +59,7 @@ export default function Navmenu() {
             <Menu.Item>
               {(address) => (
                 <a
-                  onClick={() => disconnect}
+                  onClick={() => disconnect()}
                   className={clsx(
                     address ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block cursor-pointer px-4 py-2 text-sm',
