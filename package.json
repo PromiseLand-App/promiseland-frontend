@@ -23,6 +23,7 @@
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "ethers": "^5.7.1",
+    "framer-motion": "^7.3.6",
     "fs": "^0.0.1-security",
     "graphql": "^16.6.0",
     "next": "12.3.0",
