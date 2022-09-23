@@ -1,13 +1,40 @@
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SpinnerCircular } from 'spinners-react';
-
+import { useAccount } from 'wagmi';
+import { utils } from '@worldcoin/id';
+import { WidgetProps } from '@worldcoin/id';
+import dynamic from 'next/dynamic';
 import Layout from '@/components/layout';
 import { getProfileById } from '@/graphql/GetProfileById';
 
+const WorldIDWidget = dynamic<WidgetProps>(
+  () => import('@worldcoin/id').then((mod) => mod.WorldIDWidget),
+  { ssr: false },
+);
+
+const widgetProps: WidgetProps = {
+  actionId: 'wid_staging_PCNQeDC5CX',
+  signal: 'user-id-1',
+  enableTelemetry: true,
+  appName: 'ConfCon',
+  signalDescription: 'Get your ticket to ConfCon 2023',
+  theme: 'dark',
+  debug: true, // Recommended **only** for development
+  onSuccess: (result) => console.log(result),
+  onError: ({ code, detail }) => console.log({ code, detail }),
+  onInitSuccess: () => console.log('Init successful'),
+  onInitError: (error) =>
+    console.log('Error while initialization World ID', error),
+};
+
 export default function Profile() {
+  useEffect(() => {
+    console.log('Random Number from utils: ', utils.randomNumber(1, 100));
+  }, []);
+  const { address } = useAccount();
   const router = useRouter();
   const { id } = router.query;
   const [profile, setProfile] = useState();
@@ -75,6 +102,7 @@ export default function Profile() {
                     Following
                   </p>
                 </div>
+                <WorldIDWidget {...widgetProps} />
                 <p className="mb-4">{profile.bio}</p>
                 {/* Add connect and follow buttons here */}
               </div>

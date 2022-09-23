@@ -15,10 +15,9 @@ import {
   useWaitForTransaction,
 } from 'wagmi';
 
+import PromiseLand from '@/abis/PromiseLand.json';
 import Layout from '@/components/layout';
 import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/web3Storage';
-
-import PromiseLand from '../abi/PromiseLand.json';
 
 const Create: NextPage = () => {
   const [formParams, updateFormParams] = useState({
