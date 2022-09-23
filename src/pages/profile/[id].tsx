@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { SpinnerCircular } from 'spinners-react';
-import { useAccount } from 'wagmi';
 import { utils } from '@worldcoin/id';
 import { WidgetProps } from '@worldcoin/id';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { SpinnerCircular } from 'spinners-react';
+import { useAccount } from 'wagmi';
+
 import Layout from '@/components/layout';
 import { getProfileById } from '@/graphql/GetProfileById';
 

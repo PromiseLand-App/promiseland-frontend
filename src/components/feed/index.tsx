@@ -33,16 +33,16 @@ const Feed = () => {
     //return an array of unsold market items
     const data = await marketContract.fetchMarketItems();
 
-    const items = await Promise.all(
-      data.map(async (i) => {
-        const tokenUri = await tokenContract.tokenURI(i.tokenId);
+    const items: any = await Promise.all(
+      data.map(async (index: any) => {
+        const tokenUri = await tokenContract.tokenURI(index.tokenId);
         const meta = await axios.get(tokenUri);
-        let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
-        let item = {
+        const price = ethers.utils.formatUnits(index.price.toString(), 'ether');
+        const item = {
           price,
-          tokenId: i.tokenId.toNumber(),
-          seller: i.seller,
-          owner: i.owner,
+          tokenId: index.tokenId.toNumber(),
+          seller: index.seller,
+          owner: index.owner,
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.description,
