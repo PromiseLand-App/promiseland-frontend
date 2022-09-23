@@ -8,8 +8,8 @@ import Person from './person';
 const Panel = () => {
   const { loading, error, data } = useQuery(recommendedProfiles);
 
-  if (loading) return 'Loading..';
-  if (error) return `Error! ${error.message}`;
+  if (loading) return <>Loading..</>;
+  if (error) return <>Error! {error.message}</>;
 
   return (
     <div className="relative hidden w-[22rem] px-4 pt-4 lg:block">

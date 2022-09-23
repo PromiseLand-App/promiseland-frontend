@@ -1,19 +1,54 @@
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { formatEther } from 'ethers/lib/utils';
+import { useMemo } from 'react';
+import useSWR from 'swr';
+import { useContractRead, useEnsName } from 'wagmi';
 
+import PromiseLand from '@/abis/PromiseLand.json';
 import {
   BookmarkIcon,
   EmojiCollection,
   MessageIcon,
   ShareIcon,
 } from '@/assets/icons';
+import { MarketItem } from '@/schemas/marketItem';
 import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
 
-interface IProps {
-  post: IPost;
+interface PostItemProps {
+  item: MarketItem;
 }
 
-const Post = ({ post }: IProps) => {
+const PostItem = ({ item }: PostItemProps) => {
+  const { data: uri, isLoading: isLoadingUri } = useContractRead({
+    addressOrName: PromiseLand.address,
+    contractInterface: PromiseLand.abi,
+    functionName: 'tokenURI',
+    args: [item.tokenId],
+  });
+  const { data: meta, isValidating: isLoadingMeta } = useSWR(uri);
+  const { data: ensName } = useEnsName({ address: item.seller });
+
+  const price = useMemo(() => formatEther(item.price.toString()), [item.price]);
+  const post = useMemo(
+    () =>
+      !meta
+        ? undefined
+        : ({
+            price,
+            tokenId: item.tokenId.toNumber(),
+            seller: item.seller,
+            owner: item.owner,
+            image: meta.image,
+            name: meta.name,
+            description: meta.description,
+          } as unknown as IPost),
+    [meta, item.owner, item.seller, item.tokenId, price],
+  );
+
+  if (isLoadingUri || isLoadingMeta) return <>Loading...</>;
+  if (!post) return null;
+
   return (
     <div className="relative mx-auto max-w-[30rem] space-y-4 rounded-lg border-[1px] border-gray-300 bg-white p-4 px-5">
       {/* Heading */}
@@ -22,7 +57,9 @@ const Post = ({ post }: IProps) => {
           <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
             <img className="w-full" src={post.image} alt={post.profile} />
           </div>
-          <h2 className="font-semibold">{trimAddress(post.seller)}</h2>
+          <h2 className="font-semibold">
+            {ensName ?? trimAddress(post.seller)}
+          </h2>
           <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
       </div>
@@ -33,7 +70,8 @@ const Post = ({ post }: IProps) => {
       {/* Actions */}
       <div className="space-y-2">
         <p>
-          <span className="font-semibold">{post.seller}: </span>
+          <span className="font-semibold">{ensName ?? post.seller}: </span>
+          <br />
           {post.description}
         </p>
         <div className="mb-2 flex justify-between">
@@ -44,7 +82,9 @@ const Post = ({ post }: IProps) => {
           </div>
           <BookmarkIcon />
         </div>
-        <span className=" font-semibold">{`${post.likes} likes`}</span>
+        {post.likes && (
+          <span className=" font-semibold">{`${post.likes} likes`}</span>
+        )}
         <h3 className="text-xs text-gray-500">{post.createdAt}</h3>
       </div>
 
@@ -63,4 +103,4 @@ const Post = ({ post }: IProps) => {
   );
 };
 
-export default Post;
+export default PostItem;
