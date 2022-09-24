@@ -26,15 +26,15 @@ const Create: NextPage = () => {
     price: '',
   });
 
-  const priceInEth = useMemo(
-    () => (formParams.price ? parseEther(formParams.price) : undefined),
-    [formParams.price],
-  );
-  const { data: listingPrice } = useContractRead({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
-    functionName: 'getListingPrice',
-  });
+  // const priceInEth = useMemo(
+  //   () => (formParams.price ? parseEther(formParams.price) : undefined),
+  //   [formParams.price],
+  // );
+  // const { data: listingPrice } = useContractRead({
+  //   addressOrName: PromiseLand.address,
+  //   contractInterface: PromiseLand.abi,
+  //   functionName: 'getListingPrice',
+  // });
 
   const [fileURL, setFileURL] = useState('');
   const [metadataURL, setMetadataURL] = useState('');
@@ -43,9 +43,8 @@ const Create: NextPage = () => {
     addressOrName: PromiseLand.address,
     contractInterface: PromiseLand.abi,
     functionName: 'createToken',
-    args: [metadataURL, priceInEth],
-    overrides: { value: listingPrice },
-    enabled: Boolean(metadataURL && priceInEth && listingPrice),
+    args: [metadataURL],
+    enabled: Boolean(metadataURL && formParams),
   });
   const { data, write, error } = useContractWrite(config);
   const { data: receipt } = useWaitForTransaction({
@@ -163,7 +162,7 @@ const Create: NextPage = () => {
             }
           ></textarea>
         </div>
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <label className="mb-2  block text-sm font-bold" htmlFor="price">
             Price
           </label>
@@ -177,7 +176,7 @@ const Create: NextPage = () => {
               updateFormParams((prev) => ({ ...prev, price: e.target.value }))
             }
           ></input>
-        </div>
+        </div> */}
         <div>
           <label className="mb-2  block text-sm font-bold" htmlFor="image">
             Upload Image
@@ -191,7 +190,7 @@ const Create: NextPage = () => {
         <br></br>
         <div className="text-center text-green-400">{message}</div>
         <button
-          onClick={createNFT}
+          onClick={() => createNFT}
           className="mt-5 w-20 rounded-2xl bg-blue-500 p-2 font-bold text-white shadow-lg"
         >
           Create

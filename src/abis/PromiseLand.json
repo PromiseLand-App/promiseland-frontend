@@ -1,5 +1,5 @@
 {
-  "address": "0x8B5270b5FA2c9AFF075b8e84D0b21b27EeAfd9C3",
+  "address": "0x8f1370c2b2ba290DB210ed1365B343101a03888d",
   "abi": [
     { "type": "constructor", "payable": false, "inputs": [] },
     {
@@ -28,12 +28,12 @@
       "name": "MarketItemCreated",
       "inputs": [
         { "type": "uint256", "name": "tokenId", "indexed": true },
-        { "type": "address", "name": "seller", "indexed": false },
+        { "type": "address", "name": "creator", "indexed": false },
         { "type": "address", "name": "owner", "indexed": false },
         { "type": "uint256", "name": "price", "indexed": false },
-        { "type": "uint256", "name": "upvotes", "indexed": false },
-        { "type": "uint256", "name": "downvotes", "indexed": false },
-        { "type": "bool", "name": "sold", "indexed": false }
+        { "type": "uint256", "name": "likes", "indexed": false },
+        { "type": "uint256", "name": "dislikes", "indexed": false },
+        { "type": "bool", "name": "selling", "indexed": false }
       ]
     },
     {
@@ -68,10 +68,9 @@
     },
     {
       "type": "function",
-      "name": "createMarketSale",
+      "name": "burnNFT",
       "constant": false,
-      "stateMutability": "payable",
-      "payable": true,
+      "payable": false,
       "inputs": [{ "type": "uint256", "name": "tokenId" }],
       "outputs": []
     },
@@ -81,15 +80,30 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [
-        { "type": "string", "name": "tokenURI" },
-        { "type": "uint256", "name": "price" }
-      ],
+      "inputs": [{ "type": "string", "name": "tokenURI" }],
       "outputs": [{ "type": "uint256" }]
     },
     {
       "type": "function",
-      "name": "fetchItemsListed",
+      "name": "dislikeNft",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "executeSale",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "fetchAllNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
@@ -99,19 +113,19 @@
           "type": "tuple[]",
           "components": [
             { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
+            { "type": "address", "name": "creator" },
             { "type": "address", "name": "owner" },
             { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            { "type": "uint256", "name": "likes" },
+            { "type": "uint256", "name": "dislikes" },
+            { "type": "bool", "name": "selling" }
           ]
         }
       ]
     },
     {
       "type": "function",
-      "name": "fetchMarketItems",
+      "name": "fetchSellingNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
@@ -121,34 +135,56 @@
           "type": "tuple[]",
           "components": [
             { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
+            { "type": "address", "name": "creator" },
             { "type": "address", "name": "owner" },
             { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            { "type": "uint256", "name": "likes" },
+            { "type": "uint256", "name": "dislikes" },
+            { "type": "bool", "name": "selling" }
           ]
         }
       ]
     },
     {
       "type": "function",
-      "name": "fetchMyNFTs",
+      "name": "fetchUserCreatedNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [],
+      "inputs": [{ "type": "address", "name": "userAddress" }],
       "outputs": [
         {
           "type": "tuple[]",
           "components": [
             { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
+            { "type": "address", "name": "creator" },
             { "type": "address", "name": "owner" },
             { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            { "type": "uint256", "name": "likes" },
+            { "type": "uint256", "name": "dislikes" },
+            { "type": "bool", "name": "selling" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fetchUserOwnedNfts",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [{ "type": "address", "name": "userAddress" }],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "components": [
+            { "type": "uint256", "name": "tokenId" },
+            { "type": "address", "name": "creator" },
+            { "type": "address", "name": "owner" },
+            { "type": "uint256", "name": "price" },
+            { "type": "uint256", "name": "likes" },
+            { "type": "uint256", "name": "dislikes" },
+            { "type": "bool", "name": "selling" }
           ]
         }
       ]
@@ -168,7 +204,7 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [],
+      "inputs": [{ "type": "uint256", "name": "tokenId" }],
       "outputs": [{ "type": "uint256" }]
     },
     {
@@ -185,28 +221,21 @@
     },
     {
       "type": "function",
+      "name": "likeNft",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "outputs": []
+    },
+    {
+      "type": "function",
       "name": "name",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
       "inputs": [],
       "outputs": [{ "type": "string" }]
-    },
-    {
-      "type": "function",
-      "name": "nftDownVoted",
-      "constant": false,
-      "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "bool" }]
-    },
-    {
-      "type": "function",
-      "name": "nftUpVoted",
-      "constant": false,
-      "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "bool" }]
     },
     {
       "type": "function",
@@ -228,6 +257,18 @@
         { "type": "uint256", "name": "price" }
       ],
       "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "royaltyInfo",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        { "type": "uint256", "name": "_tokenId" },
+        { "type": "uint256", "name": "_salePrice" }
+      ],
+      "outputs": [{ "type": "address" }, { "type": "uint256" }]
     },
     {
       "type": "function",
@@ -310,7 +351,10 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "uint256", "name": "_listingPrice" }],
+      "inputs": [
+        { "type": "uint256", "name": "tokenId" },
+        { "type": "uint256", "name": "_listingPrice" }
+      ],
       "outputs": []
     }
   ]
