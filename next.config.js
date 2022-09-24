@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lens.infura-ipfs.io", "w3s.link/ipfs"],
+    domains: ["lens.infura-ipfs.io", "w3s.link"],
   },
   reactStrictMode: true,
   swcMinify: true,
