@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const getDefaultProfile = gql`
-  query GetDefaultProfile: ethereumAddress! {
+  query DefaultProfile($address: EthereumAddress!) {
     defaultProfile(request: { ethereumAddress: $address }) {
       id
       name

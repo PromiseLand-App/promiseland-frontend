@@ -9,7 +9,7 @@ export default function Post() {
 
   return (
     <Layout>
-      <NftPanel tokenId={tokenId as number} />
+      <NftPanel tokenId={tokenId} />
     </Layout>
   );
 }
