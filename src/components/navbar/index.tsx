@@ -2,6 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
+import Logo from './Logo';
 
 import Navmenu from './Navmenu';
 
@@ -24,7 +25,7 @@ export default function Navbar() {
             <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
               <div className="flex items-center">
                 <Link href="/">
-                  <a>PromiseLand</a>
+                  <Logo />
                 </Link>
               </div>
               <div className="ml-10 flex items-center space-x-4">
