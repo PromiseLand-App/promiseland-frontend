@@ -1,15 +1,31 @@
 {
   "address": "0x8f1370c2b2ba290DB210ed1365B343101a03888d",
   "abi": [
-    { "type": "constructor", "payable": false, "inputs": [] },
+    {
+      "type": "constructor",
+      "payable": false,
+      "inputs": []
+    },
     {
       "type": "event",
       "anonymous": false,
       "name": "Approval",
       "inputs": [
-        { "type": "address", "name": "owner", "indexed": true },
-        { "type": "address", "name": "approved", "indexed": true },
-        { "type": "uint256", "name": "tokenId", "indexed": true }
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "approved",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        }
       ]
     },
     {
@@ -17,9 +33,21 @@
       "anonymous": false,
       "name": "ApprovalForAll",
       "inputs": [
-        { "type": "address", "name": "owner", "indexed": true },
-        { "type": "address", "name": "operator", "indexed": true },
-        { "type": "bool", "name": "approved", "indexed": false }
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "operator",
+          "indexed": true
+        },
+        {
+          "type": "bool",
+          "name": "approved",
+          "indexed": false
+        }
       ]
     },
     {
@@ -27,13 +55,41 @@
       "anonymous": false,
       "name": "MarketItemCreated",
       "inputs": [
-        { "type": "uint256", "name": "tokenId", "indexed": true },
-        { "type": "address", "name": "creator", "indexed": false },
-        { "type": "address", "name": "owner", "indexed": false },
-        { "type": "uint256", "name": "price", "indexed": false },
-        { "type": "uint256", "name": "likes", "indexed": false },
-        { "type": "uint256", "name": "dislikes", "indexed": false },
-        { "type": "bool", "name": "selling", "indexed": false }
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "creator",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "price",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "likes",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "dislikes",
+          "indexed": false
+        },
+        {
+          "type": "bool",
+          "name": "selling",
+          "indexed": false
+        }
       ]
     },
     {
@@ -41,9 +97,21 @@
       "anonymous": false,
       "name": "Transfer",
       "inputs": [
-        { "type": "address", "name": "from", "indexed": true },
-        { "type": "address", "name": "to", "indexed": true },
-        { "type": "uint256", "name": "tokenId", "indexed": true }
+        {
+          "type": "address",
+          "name": "from",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        }
       ]
     },
     {
@@ -52,8 +120,14 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -63,15 +137,29 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "address", "name": "owner" }],
-      "outputs": [{ "type": "uint256" }]
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
       "name": "burnNFT",
       "constant": false,
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
       "outputs": []
     },
     {
@@ -80,8 +168,17 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "string", "name": "tokenURI" }],
-      "outputs": [{ "type": "uint256" }]
+      "inputs": [
+        {
+          "type": "string",
+          "name": "tokenURI"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
@@ -89,7 +186,12 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
       "outputs": []
     },
     {
@@ -98,7 +200,12 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
       "outputs": []
     },
     {
@@ -112,13 +219,34 @@
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "creator" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "likes" },
-            { "type": "uint256", "name": "dislikes" },
-            { "type": "bool", "name": "selling" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
@@ -134,13 +262,34 @@
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "creator" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "likes" },
-            { "type": "uint256", "name": "dislikes" },
-            { "type": "bool", "name": "selling" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
@@ -151,18 +300,44 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "address", "name": "userAddress" }],
+      "inputs": [
+        {
+          "type": "address",
+          "name": "userAddress"
+        }
+      ],
       "outputs": [
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "creator" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "likes" },
-            { "type": "uint256", "name": "dislikes" },
-            { "type": "bool", "name": "selling" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
@@ -173,18 +348,44 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "address", "name": "userAddress" }],
+      "inputs": [
+        {
+          "type": "address",
+          "name": "userAddress"
+        }
+      ],
       "outputs": [
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "creator" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "likes" },
-            { "type": "uint256", "name": "dislikes" },
-            { "type": "bool", "name": "selling" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
@@ -195,8 +396,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "address" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
     },
     {
       "type": "function",
@@ -204,8 +414,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "uint256" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
@@ -214,10 +433,20 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "owner" },
-        { "type": "address", "name": "operator" }
+        {
+          "type": "address",
+          "name": "owner"
+        },
+        {
+          "type": "address",
+          "name": "operator"
+        }
       ],
-      "outputs": [{ "type": "bool" }]
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ]
     },
     {
       "type": "function",
@@ -225,7 +454,12 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
       "outputs": []
     },
     {
@@ -235,7 +469,11 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [],
-      "outputs": [{ "type": "string" }]
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -243,8 +481,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "address" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
     },
     {
       "type": "function",
@@ -253,8 +500,14 @@
       "stateMutability": "payable",
       "payable": true,
       "inputs": [
-        { "type": "uint256", "name": "tokenId" },
-        { "type": "uint256", "name": "price" }
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "price"
+        }
       ],
       "outputs": []
     },
@@ -265,10 +518,23 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [
-        { "type": "uint256", "name": "_tokenId" },
-        { "type": "uint256", "name": "_salePrice" }
+        {
+          "type": "uint256",
+          "name": "_tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "_salePrice"
+        }
       ],
-      "outputs": [{ "type": "address" }, { "type": "uint256" }]
+      "outputs": [
+        {
+          "type": "address"
+        },
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
@@ -276,9 +542,18 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -288,10 +563,22 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" },
-        { "type": "bytes", "name": "data" }
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "bytes",
+          "name": "data"
+        }
       ],
       "outputs": []
     },
@@ -301,8 +588,14 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "operator" },
-        { "type": "bool", "name": "approved" }
+        {
+          "type": "address",
+          "name": "operator"
+        },
+        {
+          "type": "bool",
+          "name": "approved"
+        }
       ],
       "outputs": []
     },
@@ -312,8 +605,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "bytes4", "name": "interfaceId" }],
-      "outputs": [{ "type": "bool" }]
+      "inputs": [
+        {
+          "type": "bytes4",
+          "name": "interfaceId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ]
     },
     {
       "type": "function",
@@ -322,7 +624,11 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [],
-      "outputs": [{ "type": "string" }]
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -330,8 +636,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "string" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -339,9 +654,18 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -352,8 +676,14 @@
       "stateMutability": "payable",
       "payable": true,
       "inputs": [
-        { "type": "uint256", "name": "tokenId" },
-        { "type": "uint256", "name": "_listingPrice" }
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "_listingPrice"
+        }
       ],
       "outputs": []
     }
