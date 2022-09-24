@@ -25,7 +25,9 @@ export default function Navbar() {
             <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
               <div className="flex items-center">
                 <Link href="/">
-                  <Logo />
+                  <a>
+                    <Logo />
+                  </a>
                 </Link>
               </div>
               <div className="ml-10 flex items-center space-x-4">
