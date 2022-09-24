@@ -48,7 +48,7 @@ export default function Profile() {
       </Layout>
     );
 
-  if (error) return `Error! ${error.message}`;
+  if (error) return <>Error! {error.message}</>;
 
   return (
     <Layout>

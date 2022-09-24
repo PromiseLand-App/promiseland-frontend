@@ -10,7 +10,7 @@ const Panel = () => {
   const { loading, error, data } = useQuery(recommendedProfiles);
 
   if (loading) return <SpinnerCircular />;
-  if (error) return `Error! ${error.message}`;
+  if (error) return <>Error! {error.message}</>;
 
   return (
     <>
