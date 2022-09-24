@@ -1,6 +1,7 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { Contract } from 'ethers';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import {
   FormEventHandler,
   LegacyRef,
@@ -27,6 +28,7 @@ const INITIAL_FORM_PARAMS = {
 };
 
 const Create: NextPage = () => {
+  const router = useRouter();
   const { address } = useAccount();
   const { data: signer } = useSigner();
 
@@ -99,6 +101,7 @@ const Create: NextPage = () => {
     setMessage('');
     setIsUploading(false);
     setTxn(null);
+    router.push(`/`);
   }, [receipt]);
 
   return (
