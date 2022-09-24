@@ -10,6 +10,7 @@ interface IPost {
   action: string;
   data: any;
   creator: string;
+  tokenId: number;
 }
 
 export default IPost;

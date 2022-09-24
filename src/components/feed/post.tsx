@@ -74,7 +74,14 @@ const PostItem = ({ item }: PostItemProps) => {
       </div>
       {/* Posted Image */}
       <div className="relative -mx-5 overflow-hidden">
-        <img className="w-full" src={post.image} alt={post.username} />
+        <img
+          className="w-full"
+          src={post.image}
+          alt={post.username}
+          onClick={() => {
+            router.push(`/post/${post.tokenId}`);
+          }}
+        />
       </div>
       {/* Actions */}
       <div className="space-y-2">
