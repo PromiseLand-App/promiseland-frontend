@@ -12,8 +12,10 @@ const Feed = () => {
   const { data: nfts, isLoading } = useContractRead({
     addressOrName: PromiseLand.address,
     contractInterface: PromiseLand.abi,
-    functionName: 'fetchMarketItems',
+    functionName: 'fetchAllNfts',
   });
+
+  console.log(nfts);
 
   if (isLoading) return <SpinnerCircular />;
 
