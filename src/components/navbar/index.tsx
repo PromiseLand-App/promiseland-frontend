@@ -2,8 +2,8 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
-import Logo from './Logo';
 
+import Logo from './Logo';
 import Navmenu from './Navmenu';
 
 export default function Navbar() {
