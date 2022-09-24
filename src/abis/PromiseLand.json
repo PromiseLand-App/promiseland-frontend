@@ -1,15 +1,31 @@
 {
-  "address": "0x8B5270b5FA2c9AFF075b8e84D0b21b27EeAfd9C3",
+  "address": "0x04a5c4C5C73f9E71f08F422848EF79D7c817c38D",
   "abi": [
-    { "type": "constructor", "payable": false, "inputs": [] },
+    {
+      "type": "constructor",
+      "payable": false,
+      "inputs": []
+    },
     {
       "type": "event",
       "anonymous": false,
       "name": "Approval",
       "inputs": [
-        { "type": "address", "name": "owner", "indexed": true },
-        { "type": "address", "name": "approved", "indexed": true },
-        { "type": "uint256", "name": "tokenId", "indexed": true }
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "approved",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        }
       ]
     },
     {
@@ -17,9 +33,21 @@
       "anonymous": false,
       "name": "ApprovalForAll",
       "inputs": [
-        { "type": "address", "name": "owner", "indexed": true },
-        { "type": "address", "name": "operator", "indexed": true },
-        { "type": "bool", "name": "approved", "indexed": false }
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "operator",
+          "indexed": true
+        },
+        {
+          "type": "bool",
+          "name": "approved",
+          "indexed": false
+        }
       ]
     },
     {
@@ -27,13 +55,41 @@
       "anonymous": false,
       "name": "MarketItemCreated",
       "inputs": [
-        { "type": "uint256", "name": "tokenId", "indexed": true },
-        { "type": "address", "name": "seller", "indexed": false },
-        { "type": "address", "name": "owner", "indexed": false },
-        { "type": "uint256", "name": "price", "indexed": false },
-        { "type": "uint256", "name": "upvotes", "indexed": false },
-        { "type": "uint256", "name": "downvotes", "indexed": false },
-        { "type": "bool", "name": "sold", "indexed": false }
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "creator",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "price",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "likes",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "dislikes",
+          "indexed": false
+        },
+        {
+          "type": "bool",
+          "name": "selling",
+          "indexed": false
+        }
       ]
     },
     {
@@ -41,9 +97,21 @@
       "anonymous": false,
       "name": "Transfer",
       "inputs": [
-        { "type": "address", "name": "from", "indexed": true },
-        { "type": "address", "name": "to", "indexed": true },
-        { "type": "uint256", "name": "tokenId", "indexed": true }
+        {
+          "type": "address",
+          "name": "from",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true
+        }
       ]
     },
     {
@@ -52,8 +120,14 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -63,16 +137,29 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "address", "name": "owner" }],
-      "outputs": [{ "type": "uint256" }]
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
-      "name": "createMarketSale",
+      "name": "burnNFT",
       "constant": false,
-      "stateMutability": "payable",
-      "payable": true,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
       "outputs": []
     },
     {
@@ -82,14 +169,56 @@
       "stateMutability": "payable",
       "payable": true,
       "inputs": [
-        { "type": "string", "name": "tokenURI" },
-        { "type": "uint256", "name": "price" }
+        {
+          "type": "string",
+          "name": "tokenURI"
+        },
+        {
+          "type": "address",
+          "name": "royaltyReceiver"
+        },
+        {
+          "type": "uint96",
+          "name": "feeNumerator"
+        }
       ],
-      "outputs": [{ "type": "uint256" }]
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
-      "name": "fetchItemsListed",
+      "name": "dislikeNft",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "executeSale",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "fetchAllNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
@@ -98,20 +227,41 @@
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
     },
     {
       "type": "function",
-      "name": "fetchMarketItems",
+      "name": "fetchSellingNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
@@ -120,20 +270,41 @@
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
     },
     {
       "type": "function",
-      "name": "fetchMyNFTs",
+      "name": "fetchUserCreatedNfts",
       "constant": true,
       "stateMutability": "view",
       "payable": false,
@@ -142,13 +313,82 @@
         {
           "type": "tuple[]",
           "components": [
-            { "type": "uint256", "name": "tokenId" },
-            { "type": "address", "name": "seller" },
-            { "type": "address", "name": "owner" },
-            { "type": "uint256", "name": "price" },
-            { "type": "uint256", "name": "upvotes" },
-            { "type": "uint256", "name": "downvotes" },
-            { "type": "bool", "name": "sold" }
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fetchUserOwnedNfts",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "userAddress"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "components": [
+            {
+              "type": "uint256",
+              "name": "tokenId"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "price"
+            },
+            {
+              "type": "uint256",
+              "name": "likes"
+            },
+            {
+              "type": "uint256",
+              "name": "dislikes"
+            },
+            {
+              "type": "bool",
+              "name": "selling"
+            }
           ]
         }
       ]
@@ -159,8 +399,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "address" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
     },
     {
       "type": "function",
@@ -168,8 +417,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [],
-      "outputs": [{ "type": "uint256" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
     },
     {
       "type": "function",
@@ -178,10 +436,34 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "owner" },
-        { "type": "address", "name": "operator" }
+        {
+          "type": "address",
+          "name": "owner"
+        },
+        {
+          "type": "address",
+          "name": "operator"
+        }
       ],
-      "outputs": [{ "type": "bool" }]
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "likeNft",
+      "constant": false,
+      "stateMutability": "payable",
+      "payable": true,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": []
     },
     {
       "type": "function",
@@ -190,23 +472,11 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [],
-      "outputs": [{ "type": "string" }]
-    },
-    {
-      "type": "function",
-      "name": "nftDownVoted",
-      "constant": false,
-      "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "bool" }]
-    },
-    {
-      "type": "function",
-      "name": "nftUpVoted",
-      "constant": false,
-      "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "bool" }]
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -214,8 +484,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "address" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
     },
     {
       "type": "function",
@@ -224,8 +503,60 @@
       "stateMutability": "payable",
       "payable": true,
       "inputs": [
-        { "type": "uint256", "name": "tokenId" },
-        { "type": "uint256", "name": "price" }
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "price"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "royaltyInfo",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "_tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "_salePrice"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        },
+        {
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "safeTransferFrom",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -235,22 +566,22 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
-      ],
-      "outputs": []
-    },
-    {
-      "type": "function",
-      "name": "safeTransferFrom",
-      "constant": false,
-      "payable": false,
-      "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" },
-        { "type": "bytes", "name": "data" }
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "bytes",
+          "name": "data"
+        }
       ],
       "outputs": []
     },
@@ -260,8 +591,14 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "operator" },
-        { "type": "bool", "name": "approved" }
+        {
+          "type": "address",
+          "name": "operator"
+        },
+        {
+          "type": "bool",
+          "name": "approved"
+        }
       ],
       "outputs": []
     },
@@ -271,8 +608,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "bytes4", "name": "interfaceId" }],
-      "outputs": [{ "type": "bool" }]
+      "inputs": [
+        {
+          "type": "bytes4",
+          "name": "interfaceId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ]
     },
     {
       "type": "function",
@@ -281,7 +627,11 @@
       "stateMutability": "view",
       "payable": false,
       "inputs": [],
-      "outputs": [{ "type": "string" }]
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -289,8 +639,17 @@
       "constant": true,
       "stateMutability": "view",
       "payable": false,
-      "inputs": [{ "type": "uint256", "name": "tokenId" }],
-      "outputs": [{ "type": "string" }]
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string"
+        }
+      ]
     },
     {
       "type": "function",
@@ -298,9 +657,18 @@
       "constant": false,
       "payable": false,
       "inputs": [
-        { "type": "address", "name": "from" },
-        { "type": "address", "name": "to" },
-        { "type": "uint256", "name": "tokenId" }
+        {
+          "type": "address",
+          "name": "from"
+        },
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        }
       ],
       "outputs": []
     },
@@ -310,7 +678,16 @@
       "constant": false,
       "stateMutability": "payable",
       "payable": true,
-      "inputs": [{ "type": "uint256", "name": "_listingPrice" }],
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId"
+        },
+        {
+          "type": "uint256",
+          "name": "_listingPrice"
+        }
+      ],
       "outputs": []
     }
   ]

@@ -6,7 +6,7 @@ import Panel from '@/components/suggestUserPanel';
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout hasSidebar>
       <div className="space-y-3 lg:mx-0">
         <Feed />
       </div>
