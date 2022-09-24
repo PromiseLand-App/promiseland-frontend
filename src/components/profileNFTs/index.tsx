@@ -19,7 +19,7 @@ export default function ProfileNFTs({ address }: { address: string }) {
   const chainId = useChainId();
 
   const isSupportedChain = useMemo(
-    () => true || Boolean(SUPPORTED_CHAINS[chainId]),
+    () => Boolean(SUPPORTED_CHAINS[chainId]),
     [chainId],
   );
 
