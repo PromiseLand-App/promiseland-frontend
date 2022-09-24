@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 
 import useChainId from '@/hooks/useChainId';
@@ -6,6 +7,7 @@ import { SUPPORTED_CHAINS, useOwnedNFTs } from '@/utils/nftPort';
 import Image from '../Image';
 
 export default function OwnedNFTs({ address }: { address: string }) {
+  const router = useRouter();
   const chainId = useChainId();
 
   const chain = useMemo(
@@ -34,6 +36,11 @@ export default function OwnedNFTs({ address }: { address: string }) {
                   className="h-full w-full object-cover"
                   src={nft.imageUrl ?? 'https://via.placeholder.com/150'}
                   alt={`${nft.contractAddress}.${nft.tokenId}`}
+                  onClick={() => {
+                    router.push(
+                      `/${chainId}/collection/${nft.contractAddress}?tokenId=${nft.tokenId}`,
+                    );
+                  }}
                 />
               </div>
             )),
