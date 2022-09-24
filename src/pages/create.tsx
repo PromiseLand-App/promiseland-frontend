@@ -56,9 +56,9 @@ const Create: NextPage = () => {
     (e) => {
       e.preventDefault();
 
-      const { name, description, price } = formParams;
+      const { name, description } = formParams;
       //Make sure that none of the fields are empty
-      if (!name || !description || !price || !file) return;
+      if (!name || !description || !file) return;
 
       setIsUploading(true);
       setMessage('Uploading image, please wait');
@@ -69,14 +69,13 @@ const Create: NextPage = () => {
           return uploadJSONToIPFS({
             name,
             description,
-            price,
             image: fileURL,
           });
         })
         .then((metadataURL) => {
           console.log(`Uploaded metadata: ${metadataURL}`);
           setMessage('Creating NFT');
-          return contract.createToken(metadataURL, address, 500);
+          return contract.createToken(metadataURL);
         })
         .then((txn: TransactionResponse) => {
           setMessage('Waiting txn confirmation');
@@ -89,7 +88,7 @@ const Create: NextPage = () => {
         })
         .finally(() => setIsUploading(false));
     },
-    [address, contract, formParams, file],
+    [contract, formParams, file],
   );
 
   useEffect(() => {
@@ -141,7 +140,7 @@ const Create: NextPage = () => {
               />
             </label>
           </div>
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label>
               <div className="mb-2 block text-sm font-bold">Price</div>
               <input
@@ -156,7 +155,7 @@ const Create: NextPage = () => {
                 }
               />
             </label>
-          </div>
+          </div> */}
           <div>
             <label>
               <div className="mb-2 block text-sm font-bold">Upload Image</div>
