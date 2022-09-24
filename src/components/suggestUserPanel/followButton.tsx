@@ -1,14 +1,9 @@
-import { LENSHUB_PROXY_ADDRESS } from '@/utils/constants';
-import LensHubProxy from '@/abis/LensHubProxy';
-import React, { useState } from 'react';
-import {
-  useConnect,
-  useAccount,
-  useDisconnect,
-  useContractWrite,
-  usePrepareContractWrite,
-} from 'wagmi';
+import { useState } from 'react';
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+
+import LensHubProxy from '@/abis/LensHubProxy.json';
 import IProfile from '@/schemas/profile';
+import { LENSHUB_PROXY_ADDRESS } from '@/utils/constants';
 
 interface IProps {
   profile: IProfile;
@@ -27,19 +22,11 @@ const FollowButton = ({ profile }: IProps) => {
 
   const { write } = useContractWrite(config);
 
-  async function follow() {
-    // if(isConnected){
-    //   await disconnectAsync();
-    // }
-    // await connectAsync({
-    //   connector: new MetaMaskConnector({}),
-    // });
-
-    write();
-  }
-
   return (
-    <button className="text-xs font-semibold text-blue-500" onClick={follow}>
+    <button
+      className="text-xs font-semibold text-blue-500"
+      onClick={() => write?.()}
+    >
       {buttonText}
     </button>
   );
