@@ -3,12 +3,13 @@ interface IPost {
   username: string;
   profile: string;
   image: string;
+  name: string;
   description: string;
   likes: string;
   createdAt: string;
   action: string;
   data: any;
-  seller: string;
+  creator: string;
 }
 
 export default IPost;

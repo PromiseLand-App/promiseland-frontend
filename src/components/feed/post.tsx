@@ -1,8 +1,9 @@
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { formatEther } from 'ethers/lib/utils';
+import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import useSWR from 'swr';
-import { useContractRead, useEnsName } from 'wagmi';
+import { useContractRead, useEnsAvatar, useEnsName } from 'wagmi';
 
 import PromiseLand from '@/abis/PromiseLand.json';
 import {
@@ -20,6 +21,7 @@ interface PostItemProps {
 }
 
 const PostItem = ({ item }: PostItemProps) => {
+  const router = useRouter();
   const { data: uri, isLoading: isLoadingUri } = useContractRead({
     addressOrName: PromiseLand.address,
     contractInterface: PromiseLand.abi,
@@ -27,7 +29,8 @@ const PostItem = ({ item }: PostItemProps) => {
     args: [item.tokenId],
   });
   const { data: meta, isValidating: isLoadingMeta } = useSWR(uri);
-  const { data: ensName } = useEnsName({ address: item.seller });
+  const { data: ensName } = useEnsName({ address: item.creator });
+  const { data: ensAvatar } = useEnsAvatar({ addressOrName: item.creator });
 
   const price = useMemo(() => formatEther(item.price.toString()), [item.price]);
   const post = useMemo(
@@ -37,13 +40,13 @@ const PostItem = ({ item }: PostItemProps) => {
         : ({
             price,
             tokenId: item.tokenId.toNumber(),
-            seller: item.seller,
+            creator: item.creator,
             owner: item.owner,
             image: meta.image,
             name: meta.name,
             description: meta.description,
           } as unknown as IPost),
-    [meta, item.owner, item.seller, item.tokenId, price],
+    [meta, item.owner, item.creator, item.tokenId, price],
   );
 
   if (isLoadingUri || isLoadingMeta) return <>Loading...</>;
@@ -54,12 +57,18 @@ const PostItem = ({ item }: PostItemProps) => {
       {/* Heading */}
       <div className="flex items-center justify-between">
         <div className="-m-2 flex items-center gap-3">
-          <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
-            <img className="w-full" src={post.image} alt={post.profile} />
-          </div>
-          <h2 className="font-semibold">
-            {ensName ?? trimAddress(post.seller)}
-          </h2>
+          {/* <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
+            <img className="w-full" src={ensAvatar} alt={post.profile} />
+          </div> */}
+          <a
+            onClick={() => {
+              router.push(`/profile/${post.creator}`);
+            }}
+          >
+            <h2 className="font-semibold">
+              {ensName ?? trimAddress(post.creator)}
+            </h2>
+          </a>
           <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
       </div>
@@ -70,8 +79,9 @@ const PostItem = ({ item }: PostItemProps) => {
       {/* Actions */}
       <div className="space-y-2">
         <p>
-          <span className="font-semibold">{ensName ?? post.seller}: </span>
+          <span className="font-semibold">{post.name}</span>
           <br />
+
           {post.description}
         </p>
         <div className="mb-2 flex justify-between">

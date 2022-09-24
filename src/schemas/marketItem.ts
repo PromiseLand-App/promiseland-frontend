@@ -2,7 +2,7 @@ import { BigNumber } from 'ethers';
 
 export interface MarketItem {
   tokenId: BigNumber;
-  seller: string;
+  creator: string;
   owner: string;
   price: BigNumber;
   upvotes: BigNumber;
