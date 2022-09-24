@@ -1,10 +1,8 @@
 import { useQuery } from '@apollo/client';
-import { utils } from '@worldcoin/id';
 import { WidgetProps } from '@worldcoin/id';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { SpinnerCircular } from 'spinners-react';
 import { useAccount } from 'wagmi';
 
@@ -32,19 +30,16 @@ const widgetProps: WidgetProps = {
 };
 
 export default function Profile() {
-  useEffect(() => {
-    console.log('Random Number from utils: ', utils.randomNumber(1, 100));
-  }, []);
   const { address } = useAccount();
   const router = useRouter();
   const { id } = router.query;
-  const [profile, setProfile] = useState();
 
-  const { loading, error } = useQuery(getProfileById, {
+  const {
+    data: profile,
+    loading,
+    error,
+  } = useQuery(getProfileById, {
     variables: { id },
-    onCompleted(data) {
-      setProfile(data?.profile);
-    },
   });
 
   if (loading)
@@ -53,6 +48,7 @@ export default function Profile() {
         <SpinnerCircular />
       </Layout>
     );
+
   if (error) return `Error! ${error.message}`;
 
   return (

@@ -9,14 +9,13 @@ export default function Navmenu() {
   const { data: ens } = useEnsName({
     address: address,
   });
-  console.log('ens:', ens);
 
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
         <Menu.Button className="inline-flex w-32 cursor-pointer items-center rounded-full bg-indigo-100 px-2.5 py-2 text-sm font-medium text-indigo-800">
           <span className="mr-1 h-3 w-12 rounded-full bg-indigo-400"> </span>
-          <p className="overflow-hidden text-ellipsis">{ens ? ens : address}</p>
+          <p className="overflow-hidden text-ellipsis">{ens ?? address}</p>
         </Menu.Button>
       </div>
       <Transition
