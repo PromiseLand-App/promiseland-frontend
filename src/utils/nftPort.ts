@@ -47,7 +47,7 @@ export const useOwnedNFTs = (chain: string, address: string) => {
             contractAddress: nft.contract_address,
             tokenId: nft.token_id,
             owner: address,
-            imageUrl: nft.cached_file_url || nft.file_url,
+            fileUrl: nft.cached_file_url || nft.file_url,
           } as NFT),
       ),
     );
