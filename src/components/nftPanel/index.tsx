@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useAccount, useContractRead } from 'wagmi';
 
