@@ -26,11 +26,19 @@ interface PostItemProps {
 const PostItem = ({ item }: PostItemProps) => {
   const router = useRouter();
   const promiseLand = usePromiseLandContractMeta();
+
   const { data: uri, isLoading: isLoadingUri } = useContractRead({
     ...promiseLand,
     functionName: 'tokenURI',
     args: [item.tokenId],
   });
+
+  const { data: nft } = useContractRead({
+    ...promiseLand,
+    functionName: 'fetchNftById',
+    args: [item.tokenId],
+  });
+
   const { data: meta, isValidating: isLoadingMeta } = useSWR(uri);
   const { data: ensName } = useEnsName({ address: item.creator });
   const { data: ensAvatar } = useEnsAvatar({ addressOrName: item.creator });
@@ -97,9 +105,7 @@ const PostItem = ({ item }: PostItemProps) => {
           </div>
           <BookmarkIcon />
         </div>
-        {post.likes && (
-          <span className=" font-semibold">{`${post.likes} likes`}</span>
-        )}
+        {nft && <span className=" font-semibold">{`${nft.likes} likes`}</span>}
         <h3 className="text-xs text-gray-500">{post.createdAt}</h3>
       </div>
 

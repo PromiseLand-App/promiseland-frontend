@@ -53,15 +53,19 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
         <h2 className="my-1 text-base">Description: </h2>
         <p className="my-2 text-base font-bold"> {meta.description}</p>
         <h2 className="my-1 text-base">Created by: </h2>
-        <p className="my-2 text-sm text-sky-600">
-          {' '}
-          {trimAddress(nft?.creator, 6, 4)}
-        </p>
+        <a href={`/profile/${nft?.creator}`}>
+          <p className="my-2 text-sm text-sky-600">
+            {' '}
+            {trimAddress(nft?.creator, 6, 4)}
+          </p>
+        </a>
         <h2 className="my-1 text-base">Owner by:</h2>
-        <p className="my-2 text-sm text-sky-600">
-          {' '}
-          {trimAddress(nft?.owner, 6, 4)}
-        </p>
+        <a href={`/profile/${nft?.creator}`}>
+          <p className="my-2 text-sm text-sky-600">
+            {' '}
+            {trimAddress(nft?.owner, 6, 4)}
+          </p>
+        </a>
         <div className="m-2">It has {nft?.likes.toString()} likes</div>
         <a
           className="rounded-lg bg-sky-200 py-1 px-2"
