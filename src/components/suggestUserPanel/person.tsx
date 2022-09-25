@@ -25,6 +25,8 @@ const Profile = ({ profile }: IProps) => {
                   objectFit="cover"
                   alt={profile.handle}
                   className="rounded"
+                  width={20}
+                  height={20}
                 />
               </div>
             ) : (

@@ -39,15 +39,18 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
   return (
     <div className="flex rounded-lg border py-10 pr-20 shadow">
       {post.image && (
-        <img
-          src={post.image}
-          alt={post.creator}
-          className="aspect-h w-3/5 border "
-        />
+        <img src={post.image} alt={post.creator} className="aspect-h w-3/5 " />
       )}
-      <div className="p-5">
-        <div className="m-2">Created by: {nft?.creator}</div>
-        <div className="m-2">Owner by: {nft?.owner}</div>
+
+      <div className="w-2/5 p-5">
+        <h2 className="mt-1 text-base ">Name: </h2>
+        <p className="my-2 text-3xl font-bold"> {meta.name}</p>
+        <h2 className="my-1 text-base">Description: </h2>
+        <p className="my-2 text-base font-bold"> {meta.description}</p>
+        <h2 className="my-1 text-base">Created by: </h2>
+        <p className="my-2 text-sm text-sky-600"> {nft?.creator}</p>
+        <h2 className="my-1 text-base">Owner by:</h2>
+        <p className="my-2 text-sm text-sky-600"> {nft?.owner}</p>
         <div className="m-2">It has {nft?.likes.toString()} likes</div>
         <a
           className="rounded-lg bg-sky-200 py-1 px-2"
