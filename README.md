@@ -8,7 +8,7 @@
   <h3 align="center">PromiseLand</h3>
 
   <p align="center">
-    PromiseLand is a Instagram liked Web3 Social and NFT marketplace that can benefit both content creator and their supportors with inbuilt Social-Fi elements.
+    PromiseLand is a Instagram liked Web3 Social and NFT marketplace that can benefit both content creators and their supportors with inbuilt Social-Fi elements.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -53,6 +53,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+PromiseLand is a Instagram liked Web3 Native social dapp where u
+
 ### Problem Statement
 
 - The traditional social media platform where the content creators are hard to get rewarded if they created some viral content if they are not sponsored. Overall, they are hard to get paid for creating popular content.
@@ -63,7 +65,12 @@
 - PromiseLand is built for content creators and their fans. Content creators can create their work most likely pictures as NFT to their own NFT collections. They can upload any images they want including their artwork, photograph, or just a selfie as NFT which is stored permanently in blockchain and IPFS. Their NFT can be traded and liked on our platform.
 - But not only content creators can be benefited by selling their digital content as NFT. Their fans can also be rewarded by liking their favorite content. The earlier they like the NFT, they will get a higher reward after the NFT gets sold.
 
-Use the `BLANK_README.md` to get started.
+## How it works
+
+### Like to earn
+
+- For the current NFT owner, every like on his NFT will gain 1 PROMISE coin
+- Earlier earn can share more value if the NFT is sold on our platform
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,27 +99,27 @@ To get a local copy up and running follow these simple example steps.
 
 This is an example of how to list things you need to use the software and how to install them.
 
-- npm
+- yarn
   ```sh
-  npm install npm@latest -g
+  yarn
+  yarn run dev
   ```
 
-### Installation
+### Run the App
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repo
+   ```sh
+   git clone https://github.com/PromiseLand-App/promiseland-frontend
+   ```
+2. Install packages
+   ```sh
+   yarn install
+   ```
+3. Add your environment variables in `.env`
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   NEXT_PUBLIC_WEB3_STORAGE_API_TOKEN=
+   NEXT_PUBLIC_NFTPORT_API_KEY=
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
