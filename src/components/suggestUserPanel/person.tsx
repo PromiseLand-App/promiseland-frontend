@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import IProfile from '@/schemas/profile';
 
+import Image from '../Image';
 import FollowButton from './followButton';
 
 interface IProps {
@@ -13,26 +13,18 @@ const Profile = ({ profile }: IProps) => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <Link href={`/profile/${profile.id}`} key={profile.id}>
-          <div className="h-8 w-8 overflow-hidden rounded-full">
-            {profile.picture &&
-            profile.picture.original &&
-            profile.picture.original.url.includes('lens.infura-ipfs.io') ? (
-              <div className="relative h-60 w-60 rounded bg-emerald-900">
+        <Link href={`/profile/${profile.id}`}>
+          <a>
+            <div className="h-8 w-8 shrink-0 overflow-hidden rounded-full bg-emerald-900">
+              {profile?.picture?.original?.url && (
                 <Image
                   src={profile.picture.original.url}
-                  layout="fill"
-                  objectFit="cover"
                   alt={profile.handle}
-                  className="rounded"
-                  width={20}
-                  height={20}
+                  className="h-full w-full rounded object-cover"
                 />
-              </div>
-            ) : (
-              <div className="h-60 w-60 rounded bg-emerald-900" />
-            )}
-          </div>
+              )}
+            </div>
+          </a>
         </Link>
 
         <div className="text-xs">
