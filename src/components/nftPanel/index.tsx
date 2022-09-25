@@ -1,13 +1,17 @@
+import { formatEther } from 'ethers/lib/utils';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useAccount, useContractRead } from 'wagmi';
 
 import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
+import { MarketItem } from '@/schemas/marketItem';
 import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
 
+import BuyButton from './BuyButton';
+import SellButton from './SellButton';
+
 export default function NftPanel({ tokenId }: { tokenId: number }) {
-  // const { price, setPrice } = useState();
   const { address } = useAccount();
   const promiseLand = usePromiseLandContractMeta();
 
@@ -21,6 +25,7 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
     ...promiseLand,
     functionName: 'fetchNftById',
     args: [tokenId],
+    watch: true,
   });
 
   const { data: meta, isValidating: isLoadingMeta } = useSWR(uri);
@@ -36,6 +41,7 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
           } as unknown as IPost),
     [meta],
   );
+
   if (isLoadingUri || isLoadingMeta) return <>Loading...</>;
   if (!post) return null;
 
@@ -55,11 +61,11 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
         <h2 className="my-1 text-base">Description: </h2>
         <p className="my-2 text-base font-bold"> {meta.description}</p>
         <div className="font-bold">It has {nft?.likes.toString()} likes</div>
-        <div className="flex flex-row">
-          <h2 className="my-1 text-base">Is it selling: </h2>
-          <p className="ml-2 mt-1 text-sm text-sky-600">
+        <div className="my-1 flex flex-row items-center">
+          <h2 className="text-base">Selling at: </h2>
+          <p className="ml-2 text-sm text-sky-600">
             {' '}
-            {nft?.selling ? 'yes' : 'no'}
+            {nft?.selling ? `${formatEther(nft?.price ?? 0)} eth` : 'N/A'}
           </p>
         </div>
         <div className="flex flex-row">
@@ -72,7 +78,7 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
             <a href={`/profile/${nft?.creator}`}>
               <p className="ml-2 mt-1 text-sm text-sky-600">
                 {' '}
-                {trimAddress(nft?.owner, 6, 4)}
+                {trimAddress(nft?.creator, 6, 4)}
               </p>
             </a>
           )}
@@ -93,33 +99,13 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
           )}
         </div>
 
-        {nft?.owner == address && (
-          <div className="my-2">
-            <input
-              className="w-full appearance-none rounded border p-2 leading-tight text-gray-700"
-              type="number"
-              placeholder="Set a Selling Price for ETH"
-              step="0.01"
-              // value={formParams.price}
-              // onChange={(e) => setPrice(e.target.value)}
-            ></input>
-            <button
-              className="my-2 rounded bg-blue-500 py-2 px-4 text-sm font-bold text-white hover:bg-blue-700"
-              // onClick={() => buyNFT(tokenId)}
-            >
-              Sell this NFT
-            </button>
-          </div>
-        )}
-
-        {nft?.owner !== address && nft?.selling && (
-          <button
-            className="my-2 rounded bg-blue-500 py-2 px-4 text-sm font-bold text-white hover:bg-blue-700"
-            // onClick={() => buyNFT(tokenId)}
-          >
-            buy this NFT
-          </button>
-        )}
+        <div className="my-2">
+          {nft?.owner == address ? (
+            <SellButton marketItem={nft as unknown as MarketItem} />
+          ) : nft?.isSelling ? (
+            <BuyButton marketItem={nft as unknown as MarketItem} />
+          ) : null}
+        </div>
 
         {/* <a
           className="rounded-lg bg-sky-200 py-1 px-2"

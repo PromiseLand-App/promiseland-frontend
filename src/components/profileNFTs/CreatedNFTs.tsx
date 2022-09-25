@@ -12,6 +12,7 @@ export default function CreatedNFTs({ address }: { address: string }) {
     ...promiseLand,
     functionName: 'fetchUserCreatedNfts',
     args: [address],
+    watch: true,
   });
 
   return (

@@ -5,6 +5,7 @@ interface IProfile {
   followedBy: string;
   handle: string;
   bio: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   picture: any;
 }
 

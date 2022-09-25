@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { chain, useContractWrite, usePrepareContractWrite } from 'wagmi';
 
 import LensHubProxy from '@/abis/LensHubProxy.json';
@@ -12,8 +11,6 @@ interface IProps {
 
 const FollowButton = ({ profile }: IProps) => {
   const chainId = useChainId();
-  const [loading, setLoading] = useState(false);
-  const [buttonText, setButtonText] = useState('Follow');
 
   const { config } = usePrepareContractWrite({
     addressOrName:
@@ -24,14 +21,15 @@ const FollowButton = ({ profile }: IProps) => {
     args: [[profile.id], [0x0]],
   });
 
-  const { write } = useContractWrite(config);
+  const { data: txn, write, isLoading } = useContractWrite(config);
 
   return (
     <button
       className="text-xs font-semibold text-blue-500"
+      disabled={Boolean(txn || isLoading)}
       onClick={() => write?.()}
     >
-      {buttonText}
+      {txn ? 'Followed' : isLoading ? 'Updating...' : 'Follow'}
     </button>
   );
 };

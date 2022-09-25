@@ -6,16 +6,13 @@ import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import Post from './post';
 
 const Feed = () => {
-  // const [nfts, setNfts] = useState([]);
-  // const [loadingState, setLoadingState] = useState('not-loaded');
   const promiseLand = usePromiseLandContractMeta();
 
   const { data: nfts, isLoading } = useContractRead({
     ...promiseLand,
     functionName: 'fetchAllNfts',
+    watch: true,
   });
-
-  console.log(nfts);
 
   if (isLoading) return <SpinnerCircular />;
 

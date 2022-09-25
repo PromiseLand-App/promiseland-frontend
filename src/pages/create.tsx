@@ -10,12 +10,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  useAccount,
-  useContract,
-  useSigner,
-  useWaitForTransaction,
-} from 'wagmi';
+import { useContract, useSigner, useWaitForTransaction } from 'wagmi';
 
 import Layout from '@/components/layout';
 import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
@@ -29,7 +24,6 @@ const INITIAL_FORM_PARAMS = {
 
 const Create: NextPage = () => {
   const router = useRouter();
-  const { address } = useAccount();
   const { data: signer } = useSigner();
   const promiseLand = usePromiseLandContractMeta();
 

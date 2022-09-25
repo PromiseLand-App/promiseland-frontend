@@ -1,6 +1,5 @@
 import { formatEther } from 'ethers/lib/utils';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useContractRead, useEnsAvatar, useEnsName } from 'wagmi';
@@ -24,7 +23,6 @@ interface PostItemProps {
 }
 
 const PostItem = ({ item }: PostItemProps) => {
-  const router = useRouter();
   const promiseLand = usePromiseLandContractMeta();
 
   const { data: uri, isLoading: isLoadingUri } = useContractRead({
@@ -37,6 +35,7 @@ const PostItem = ({ item }: PostItemProps) => {
     ...promiseLand,
     functionName: 'fetchNftById',
     args: [item.tokenId],
+    watch: true,
   });
 
   const { data: meta, isValidating: isLoadingMeta } = useSWR(uri);
@@ -68,9 +67,19 @@ const PostItem = ({ item }: PostItemProps) => {
       {/* Heading */}
       <div className="flex items-center justify-between">
         <div className="-m-2 flex items-center gap-3">
-          {/* <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
-            <img className="w-full" src={ensAvatar} alt={post.profile} />
-          </div> */}
+          <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
+            {ensAvatar ? (
+              <Image
+                className="h-full w-full object-cover"
+                src={ensAvatar}
+                alt={post.profile}
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-500 text-xs text-white">
+                {(ensName ?? post.creator.slice(2)).slice(0, 2)}
+              </div>
+            )}
+          </div>
           <Link href={`/profile/${post.creator}`}>
             <a>
               <h2 className="font-semibold">

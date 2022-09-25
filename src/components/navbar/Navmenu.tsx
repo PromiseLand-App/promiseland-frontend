@@ -1,18 +1,10 @@
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { Fragment } from 'react';
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi';
+import { useDisconnect } from 'wagmi';
 
 export default function Navmenu() {
-  const { address } = useAccount();
   const { disconnect } = useDisconnect();
-  const { data: ens } = useEnsName({
-    address: address,
-  });
-
-  const { data: avatar } = useEnsAvatar({
-    addressOrName: address,
-  });
 
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">

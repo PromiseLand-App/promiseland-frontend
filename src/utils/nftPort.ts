@@ -40,6 +40,7 @@ export const useOwnedNFTs = (chain: string, address: string) => {
 
   const data = useMemo(() => {
     if (!raw) return undefined;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nfts: NFT[][] = raw.map((each: { nfts: any[] }) =>
       each.nfts.map(
         (nft) =>

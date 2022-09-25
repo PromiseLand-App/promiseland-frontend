@@ -14,5 +14,5 @@ export const PROMISELAND_ADDRESS_MAP = {
   [chain.goerli.id]: '0x18f026b9d50aeeca8029Ec3D3fBa29844691DAf1',
   [chain.optimism.id]: '0xA1d54E6119015295Fd5F662f8f74D09A7B688E7Ay',
   [chain.polygon.id]: '0xD22c813B9a2a65A5B562c22dFBF31fdd902C39fF',
-  [chain.polygonMumbai.id]: '0x41c5de9EC3DA7e8077A0302775A85c15d83eE2E1',
+  [chain.polygonMumbai.id]: '0x0dE95bed0999Dc657D7BCea5617F72AEa2015321',
 };
