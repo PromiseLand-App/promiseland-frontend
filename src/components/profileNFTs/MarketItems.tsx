@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useMemo } from 'react';
 import { useContractReads } from 'wagmi';
 
@@ -38,15 +39,22 @@ export default function MarketItems({
       <div className="grid grid-cols-3 gap-4">
         {uris?.length &&
           uris.map((uri, i) => (
-            <NFTWithTokenURI
+            <Link
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              href={`/post/${items![i].tokenId.toString()}`}
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               key={items![i].tokenId.toString()}
-              owner={address}
-              contractAddress={promiseLand.addressOrName}
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              tokenId={items![i].tokenId.toString()}
-              tokenURI={uri as unknown as string}
-            />
+            >
+              <a>
+                <NFTWithTokenURI
+                  owner={address}
+                  contractAddress={promiseLand.addressOrName}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                  tokenId={items![i].tokenId.toString()}
+                  tokenURI={uri as unknown as string}
+                />
+              </a>
+            </Link>
           ))}
       </div>
       <div className="py-4 text-center">
