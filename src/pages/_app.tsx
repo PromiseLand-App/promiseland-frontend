@@ -1,7 +1,6 @@
 import '@/styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
-import { ApolloProvider } from '@apollo/client';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
@@ -10,7 +9,7 @@ import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 
-import apolloClient from '@/lib/client';
+import { LensGraphQLProvider } from '@/utils/lens';
 
 const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
@@ -42,13 +41,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <ApolloProvider client={apolloClient}>
-        <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider chains={chains}>
+        <LensGraphQLProvider>
           <SWRConfig value={{ fetcher }}>
             {isMounted && <Component {...pageProps} />}
           </SWRConfig>
-        </RainbowKitProvider>
-      </ApolloProvider>
+        </LensGraphQLProvider>
+      </RainbowKitProvider>
     </WagmiConfig>
   );
 }
