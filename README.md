@@ -15,8 +15,8 @@
     <br />
     <a href="">View Demo Video</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">EthOnline Showcase Link</a>
-    
+    <a href="https://ethglobal.com/showcase/promiseland-1jr0n">EthOnline Showcase Link</a>
+     ·
   </p>
 </div>
 
