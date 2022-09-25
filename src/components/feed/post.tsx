@@ -1,5 +1,6 @@
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { formatEther } from 'ethers/lib/utils';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import useSWR from 'swr';
@@ -15,6 +16,8 @@ import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import { MarketItem } from '@/schemas/marketItem';
 import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
+
+import Image from '../Image';
 
 interface PostItemProps {
   item: MarketItem;
@@ -60,28 +63,23 @@ const PostItem = ({ item }: PostItemProps) => {
           {/* <div className="h-8 w-8 cursor-pointer overflow-hidden rounded-full">
             <img className="w-full" src={ensAvatar} alt={post.profile} />
           </div> */}
-          <a
-            onClick={() => {
-              router.push(`/profile/${post.creator}`);
-            }}
-          >
-            <h2 className="font-semibold">
-              {ensName ?? trimAddress(post.creator)}
-            </h2>
-          </a>
+          <Link href={`/profile/${post.creator}`}>
+            <a>
+              <h2 className="font-semibold">
+                {ensName ?? trimAddress(post.creator)}
+              </h2>
+            </a>
+          </Link>
           <h2 className="text-xs font-semibold text-slate-500">just create</h2>
         </div>
       </div>
       {/* Posted Image */}
       <div className="relative -mx-5 overflow-hidden">
-        <img
-          className="w-full"
-          src={post.image}
-          alt={post.username}
-          onClick={() => {
-            router.push(`/post/${post.tokenId}`);
-          }}
-        />
+        <Link href={`/post/${post.tokenId}`}>
+          <a>
+            <Image className="w-full" src={post.image} alt={post.username} />
+          </a>
+        </Link>
       </div>
       {/* Actions */}
       <div className="space-y-2">
