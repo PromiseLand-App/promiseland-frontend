@@ -125,7 +125,7 @@ const PostItem = ({ item }: PostItemProps) => {
         <input
           className="w-full focus:outline-none"
           type="text"
-          placeholder="Add a comment (Comming soon)"
+          placeholder="Add a comment (Coming soon)"
         />
         <button className="text-blue-500">Post</button>
       </div>
