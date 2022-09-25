@@ -1,14 +1,17 @@
 import { useQuery } from '@apollo/client';
 import { WidgetProps } from '@worldcoin/id';
+import { getAddress, isAddress } from 'ethers/lib/utils';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { SpinnerCircular } from 'spinners-react';
-import { useAccount } from 'wagmi';
 
+import Image from '@/components/Image';
 import Layout from '@/components/layout';
 import ProfileNFTs from '@/components/profileNFTs';
+import { getDefaultProfile } from '@/graphql/GetDefaultProfile';
 import { getProfileById } from '@/graphql/GetProfileById';
+import { getProfilesByAddress } from '@/graphql/GetProfilesByAddress';
+import useIsLensSupported from '@/hooks/useIsLensSupported';
+import { queryParamStringParser, useQueryParam } from '@/hooks/useQueryParam';
 
 const WorldIDWidget = dynamic<WidgetProps>(
   () => import('@worldcoin/id').then((mod) => mod.WorldIDWidget),
@@ -31,15 +34,25 @@ const widgetProps: WidgetProps = {
 };
 
 export default function Profile() {
-  const router = useRouter();
-  const { id } = router.query;
-  const { address } = useAccount();
+  const id = useQueryParam('id', queryParamStringParser);
+  const isLensSupported = useIsLensSupported();
 
-  const { data, loading, error } = useQuery(getProfileById, {
-    variables: { id },
+  const isWallet = isAddress(id ?? '');
+
+  const { data, loading, error } = useQuery(
+    isWallet ? getDefaultProfile : getProfileById,
+    {
+      variables: isWallet ? { address: id } : { id },
+      skip: !id || !isLensSupported,
+    },
+  );
+
+  const { data: profilesResult } = useQuery(getProfilesByAddress, {
+    variables: { address: id },
+    skip: !isWallet || !isLensSupported || data?.profile,
   });
 
-  const { profile } = data ?? {};
+  const profile = data?.profile ?? profilesResult?.profiles?.items?.[0];
 
   if (loading)
     return (
@@ -57,23 +70,15 @@ export default function Profile() {
           <>
             <div className="flex w-full flex-wrap items-start md:flex-nowrap">
               <div className="mb-4 w-full md:mr-8 md:w-auto">
-                {profile?.picture &&
-                profile?.picture.original &&
-                profile?.picture.original.url.includes(
-                  'lens.infura-ipfs.io',
-                ) ? (
-                  <div className="relative mx-auto h-60 w-60 rounded bg-emerald-900">
+                <div className="mx-auto h-60 w-60 rounded bg-emerald-900">
+                  {profile?.picture?.original?.url && (
                     <Image
                       src={profile?.picture?.original.url}
-                      layout="fill"
-                      objectFit="cover"
                       alt={profile.handle}
-                      className="rounded"
+                      className="h-full w-full rounded object-cover"
                     />
-                  </div>
-                ) : (
-                  <div className="mx-auto h-60 w-60 rounded bg-emerald-900" />
-                )}
+                  )}
+                </div>
               </div>
               <div className="w-full">
                 <div className="text-center md:text-left">
@@ -110,7 +115,7 @@ export default function Profile() {
             </div>
             <ProfileNFTs address={id as string} />
           </>
-        ) : (
+        ) : isWallet ? (
           <>
             <div className="flex w-full flex-wrap items-start md:flex-nowrap">
               <div className="mb-4 w-full md:mr-8 md:w-auto">
@@ -119,7 +124,7 @@ export default function Profile() {
               <div className="w-full">
                 <div className="text-center md:text-left">
                   <h2 className="mb-2 text-xl font-bold text-black sm:text-2xl sm:tracking-tight">
-                    {address}
+                    {getAddress(id as string)}
                   </h2>
                   <div className="mb-4 flex flex-wrap justify-center gap-x-2 text-sm text-gray-600 sm:text-base md:justify-start">
                     <p>
@@ -139,6 +144,8 @@ export default function Profile() {
             </div>
             <ProfileNFTs address={id as string} />
           </>
+        ) : (
+          <div>Invalid address</div>
         )}
       </div>
     </Layout>

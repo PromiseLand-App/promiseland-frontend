@@ -2,12 +2,18 @@ import { useQuery } from '@apollo/client';
 import { SpinnerCircular } from 'spinners-react';
 
 import { recommendedProfiles } from '@/graphql/RecommendedProfiles';
+import useIsLensSupported from '@/hooks/useIsLensSupported';
 import IProfile from '@/schemas/profile';
 
 import Person from './person';
 
 const Panel = () => {
-  const { loading, error, data } = useQuery(recommendedProfiles);
+  const isLensSupported = useIsLensSupported();
+  const { loading, error, data } = useQuery(recommendedProfiles, {
+    skip: !isLensSupported,
+  });
+
+  if (!isLensSupported) return null;
 
   if (loading) return <SpinnerCircular />;
   if (error) return <>Error! {error.message}</>;
