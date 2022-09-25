@@ -12,7 +12,7 @@ const Logo = () => {
         width={27}
         className="cursor-pointer"
       />
-      <span className="bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-500 bg-clip-text px-2 text-transparent font-extrabold text-lg">
+      <span className="bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-500 bg-clip-text px-2 text-lg font-extrabold text-transparent">
         PromiseLand
       </span>
     </div>

@@ -4,12 +4,11 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { SpinnerCircular } from 'spinners-react';
+import { useAccount } from 'wagmi';
 
 import Layout from '@/components/layout';
 import ProfileNFTs from '@/components/profileNFTs';
 import { getProfileById } from '@/graphql/GetProfileById';
-import { useState } from 'react';
-import { useAccount } from 'wagmi';
 
 const WorldIDWidget = dynamic<WidgetProps>(
   () => import('@worldcoin/id').then((mod) => mod.WorldIDWidget),
@@ -34,15 +33,13 @@ const widgetProps: WidgetProps = {
 export default function Profile() {
   const router = useRouter();
   const { id } = router.query;
-  const [profile, setProfile] = useState();
   const { address } = useAccount();
 
-  const { loading, error } = useQuery(getProfileById, {
+  const { data, loading, error } = useQuery(getProfileById, {
     variables: { id },
-    onCompleted(data) {
-      setProfile(data?.profile);
-    },
   });
+
+  const { profile } = data ?? {};
 
   if (loading)
     return (

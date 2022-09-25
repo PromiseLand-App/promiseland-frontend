@@ -39,6 +39,8 @@ const Create: NextPage = () => {
   const [message, setMessage] = useState('');
   const [isUploading, setIsUploading] = useState(false);
 
+  const isProcessing = isUploading || Boolean(txn);
+
   // const priceInEth = useMemo(
   //   () => (formParams.price ? parseEther(formParams.price) : undefined),
   //   [formParams.price],
@@ -95,14 +97,8 @@ const Create: NextPage = () => {
 
   useEffect(() => {
     if (!receipt) return;
-    alert('Successfully listed your NFT!');
-    setFormParams(INITIAL_FORM_PARAMS);
-    formRef.current?.reset();
-    setMessage('');
-    setIsUploading(false);
-    setTxn(null);
     router.push(`/`);
-  }, [receipt]);
+  }, [receipt, router]);
 
   return (
     <Layout>
@@ -121,6 +117,7 @@ const Create: NextPage = () => {
                   setFormParams((prev) => ({ ...prev, name: e.target.value }))
                 }
                 value={formParams.name}
+                disabled={isProcessing}
               />
             </label>
           </div>
@@ -140,6 +137,7 @@ const Create: NextPage = () => {
                     description: e.target.value,
                   }))
                 }
+                disabled={isProcessing}
               />
             </label>
           </div>
@@ -156,6 +154,7 @@ const Create: NextPage = () => {
                 onChange={(e) =>
                   setFormParams((prev) => ({ ...prev, price: e.target.value }))
                 }
+                disabled={isProcessing}
               />
             </label>
           </div> */}
@@ -165,6 +164,7 @@ const Create: NextPage = () => {
               <input
                 type="file"
                 accept="image/png, image/jpeg, image/gif"
+                disabled={isProcessing}
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
               />
             </label>
@@ -172,7 +172,7 @@ const Create: NextPage = () => {
           <div className="py-8 text-center text-green-400">{message}</div>
           <button
             type="submit"
-            disabled={isUploading || Boolean(txn)}
+            disabled={isProcessing}
             className="mt-5 rounded-2xl bg-blue-500 py-2 px-4 font-bold text-white shadow-lg"
           >
             {isUploading ? 'Uploading...' : txn ? 'Waiting...' : 'Create'}

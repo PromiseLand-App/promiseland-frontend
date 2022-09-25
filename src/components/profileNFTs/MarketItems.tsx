@@ -38,9 +38,11 @@ export default function MarketItems({
         {uris?.length &&
           uris.map((uri, i) => (
             <NFTWithTokenURI
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               key={items![i].tokenId.toString()}
               owner={address}
               contractAddress={PromiseLand.address}
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               tokenId={items![i].tokenId.toString()}
               tokenURI={uri as unknown as string}
             />

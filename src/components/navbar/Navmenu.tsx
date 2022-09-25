@@ -17,7 +17,7 @@ export default function Navmenu() {
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-15 cursor-pointer items-center rounded-full px-2.5 py-2 text-sm font-medium text-blue-500 hover:text-blue-300 ">
+        <Menu.Button className="inline-flex cursor-pointer items-center rounded-full px-2.5 py-2 text-sm font-medium text-blue-500 hover:text-blue-300 ">
           <p className="overflow-hidden text-ellipsis">Setting</p>
         </Menu.Button>
       </div>
