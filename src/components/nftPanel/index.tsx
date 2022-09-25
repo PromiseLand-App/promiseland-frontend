@@ -102,7 +102,7 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
         <div className="my-2">
           {nft?.owner == address ? (
             <SellButton marketItem={nft as unknown as MarketItem} />
-          ) : nft?.isSelling ? (
+          ) : nft?.selling ? (
             <BuyButton marketItem={nft as unknown as MarketItem} />
           ) : null}
         </div>
