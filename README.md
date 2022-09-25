@@ -10,7 +10,7 @@
   <p align="center">
     PromiseLand is an Instagram-liked Web3 Social and NFT marketplace that can benefit both content creators and their supportors with inbuilt Social-Fi elements.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Check out the DEMO »</strong></a>
+    <a href="https://promiseland.app"><strong>Check out our website! »</strong></a>
     <br />
     <br />
     <a href="">View Demo Video</a>
@@ -50,13 +50,13 @@
 
 ## About The Project
 
+PromiseLand is a Instagram-liked Web3 social media platform and NFT marketplace with “like to earn” social-fi element.
+
 <div align="center">
   <a href="https://promiseland.app" >
     <img src="./public/demo1.jpg" alt="Logo" width="1200" height="520">
   </a>
 </div>
-
-PromiseLand is a Instagram liked Web3 Native social dapp where u
 
 ### Problem Statement
 
@@ -159,14 +159,6 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
