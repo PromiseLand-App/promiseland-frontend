@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client';
+import { useState } from 'react';
 import { SpinnerCircular } from 'spinners-react';
 
 import { recommendedProfiles } from '@/graphql/RecommendedProfiles';
@@ -13,6 +14,8 @@ const Panel = () => {
     skip: !isLensSupported,
   });
 
+  const [showAll, setShowAll] = useState(false);
+
   if (!isLensSupported) return null;
 
   if (loading) return <SpinnerCircular />;
@@ -26,11 +29,16 @@ const Panel = () => {
             <h1 className="font-semibold opacity-50">
               Suggestted Uers For You
             </h1>
-            <button>See All</button>
+            <button onClick={() => setShowAll((prev) => !prev)}>
+              {showAll ? 'Show less' : 'Show more'}
+            </button>
           </div>
 
           <div className="space-y-4">
-            {data.recommendedProfiles.map((profile: IProfile) => (
+            {(showAll
+              ? data.recommendedProfiles
+              : data.recommendedProfiles.slice(0, 5)
+            ).map((profile: IProfile) => (
               <Person key={profile.id} profile={profile} />
             ))}
           </div>
