@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { Fragment } from 'react';
-import { useAccount, useDisconnect, useEnsName } from 'wagmi';
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi';
 
 export default function Navmenu() {
   const { address } = useAccount();
@@ -10,12 +10,15 @@ export default function Navmenu() {
     address: address,
   });
 
+  const { data: avatar } = useEnsAvatar({
+    addressOrName: address,
+  });
+
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-32 cursor-pointer items-center rounded-full bg-indigo-100 px-2.5 py-2 text-sm font-medium text-indigo-800">
-          <span className="mr-1 h-3 w-12 rounded-full bg-indigo-400"> </span>
-          <p className="overflow-hidden text-ellipsis">{ens ?? address}</p>
+        <Menu.Button className="inline-flex w-15 cursor-pointer items-center rounded-full px-2.5 py-2 text-sm font-medium text-blue-500 hover:text-blue-300 ">
+          <p className="overflow-hidden text-ellipsis">Setting</p>
         </Menu.Button>
       </div>
       <Transition
@@ -45,7 +48,7 @@ export default function Navmenu() {
             <Menu.Item>
               {(address) => (
                 <a
-                  href={`/my-posts`}
+                  href={`/setting`}
                   className={clsx(
                     address ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm',

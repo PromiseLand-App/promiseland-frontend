@@ -22,8 +22,8 @@ export default function Navbar() {
             className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
             aria-label="Top"
           >
-            <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
-              <div className="flex items-center">
+            <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-4 lg:border-none">
+              <div className="flex items-center ">
                 <Link href="/">
                   <a>
                     <Logo />
@@ -32,16 +32,19 @@ export default function Navbar() {
               </div>
               <div className="ml-10 flex items-center space-x-4">
                 <Link href="/">
-                  <a className="inline-flex items-center rounded-full px-3 py-2 text-sm font-medium  text-blue-500 hover:text-blue-300 ">
+                  <a className="inline-flex items-center rounded-full px-3  text-sm font-medium  text-blue-500 hover:text-blue-300 ">
                     Expore
                   </a>
                 </Link>
-                <Link href="/create">
-                  <a className="inline-flex items-center rounded-full  px-3 py-2 text-sm font-medium  text-blue-500 hover:text-blue-300 ">
-                    Create
-                  </a>
-                </Link>
-                {address ? <Navmenu /> : <ConnectButton />}
+                {address && (
+                  <Link href="/create">
+                    <a className="inline-flex items-center rounded-full  px-3  text-sm font-medium  text-blue-500 hover:text-blue-300 ">
+                      Create
+                    </a>
+                  </Link>
+                )}
+                {address && <Navmenu />}
+                <ConnectButton />
               </div>
             </div>
           </nav>
