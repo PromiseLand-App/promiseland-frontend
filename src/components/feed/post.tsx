@@ -1,4 +1,3 @@
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { formatEther } from 'ethers/lib/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -18,6 +17,7 @@ import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
 
 import Image from '../Image';
+import LikeButton from '../LikeButton';
 
 interface PostItemProps {
   item: MarketItem;
@@ -42,7 +42,7 @@ const PostItem = ({ item }: PostItemProps) => {
         ? undefined
         : ({
             price,
-            tokenId: item.tokenId.toNumber(),
+            tokenId: item.tokenId,
             creator: item.creator,
             owner: item.owner,
             image: meta.image,
@@ -91,7 +91,7 @@ const PostItem = ({ item }: PostItemProps) => {
         </p>
         <div className="mb-2 flex justify-between">
           <div className="flex items-center gap-4">
-            <ThumbUpOffAltIcon />
+            <LikeButton tokenId={post.tokenId} />
             <MessageIcon />
             <ShareIcon />
           </div>

@@ -1,3 +1,5 @@
+import { BigNumberish } from 'ethers';
+
 interface IPost {
   id: string;
   username: string;
@@ -10,7 +12,7 @@ interface IPost {
   action: string;
   data: any;
   creator: string;
-  tokenId: number;
+  tokenId: BigNumberish;
 }
 
 export default IPost;
