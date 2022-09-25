@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useContractReads } from 'wagmi';
 
-import PromiseLand from '@/abis/PromiseLand.json';
+import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import { MarketItem } from '@/schemas/marketItem';
 
 import NFTWithTokenURI from './NFTWithTokenURI';
@@ -15,19 +15,20 @@ export default function MarketItems({
   isLoading: boolean;
   items: MarketItem[] | undefined;
 }) {
+  const promiseLand = usePromiseLandContractMeta();
+
   const args = useMemo(
     () =>
       !items
         ? { contracts: [], enabled: false }
         : {
             contracts: items.map((item: MarketItem) => ({
-              addressOrName: PromiseLand.address,
-              contractInterface: PromiseLand.abi,
+              ...promiseLand,
               functionName: 'tokenURI',
               args: [item.tokenId],
             })),
           },
-    [items],
+    [items, promiseLand],
   );
 
   const { data: uris } = useContractReads(args);
@@ -41,7 +42,7 @@ export default function MarketItems({
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               key={items![i].tokenId.toString()}
               owner={address}
-              contractAddress={PromiseLand.address}
+              contractAddress={promiseLand.addressOrName}
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               tokenId={items![i].tokenId.toString()}
               tokenURI={uri as unknown as string}

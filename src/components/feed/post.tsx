@@ -5,13 +5,13 @@ import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useContractRead, useEnsAvatar, useEnsName } from 'wagmi';
 
-import PromiseLand from '@/abis/PromiseLand.json';
 import {
   BookmarkIcon,
   EmojiCollection,
   MessageIcon,
   ShareIcon,
 } from '@/assets/icons';
+import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import { MarketItem } from '@/schemas/marketItem';
 import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
@@ -22,9 +22,9 @@ interface PostItemProps {
 
 const PostItem = ({ item }: PostItemProps) => {
   const router = useRouter();
+  const promiseLand = usePromiseLandContractMeta();
   const { data: uri, isLoading: isLoadingUri } = useContractRead({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
+    ...promiseLand,
     functionName: 'tokenURI',
     args: [item.tokenId],
   });

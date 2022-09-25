@@ -17,8 +17,8 @@ import {
   useWaitForTransaction,
 } from 'wagmi';
 
-import PromiseLand from '@/abis/PromiseLand.json';
 import Layout from '@/components/layout';
+import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import { uploadFileToIPFS, uploadJSONToIPFS } from '@/utils/web3Storage';
 
 const INITIAL_FORM_PARAMS = {
@@ -31,6 +31,7 @@ const Create: NextPage = () => {
   const router = useRouter();
   const { address } = useAccount();
   const { data: signer } = useSigner();
+  const promiseLand = usePromiseLandContractMeta();
 
   const formRef = useRef<HTMLFormElement>();
   const [file, setFile] = useState<File | null>(null);
@@ -47,8 +48,7 @@ const Create: NextPage = () => {
   // );
 
   const contract = useContract<Contract>({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
+    ...promiseLand,
     signerOrProvider: signer,
   });
 

@@ -1,14 +1,15 @@
 import { useContractRead } from 'wagmi';
 
-import PromiseLand from '@/abis/PromiseLand.json';
+import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import { MarketItem } from '@/schemas/marketItem';
 
 import MarketItems from './MarketItems';
 
 export default function BroughtNFTs({ address }: { address: string }) {
+  const promiseLand = usePromiseLandContractMeta();
+
   const { data: items, isLoading } = useContractRead({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
+    ...promiseLand,
     functionName: 'fetchUserOwnedNfts',
     args: [address],
   });

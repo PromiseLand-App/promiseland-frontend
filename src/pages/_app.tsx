@@ -14,7 +14,13 @@ import { LensGraphQLProvider } from '@/utils/lens';
 const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, chain.polygon, chain.optimism, chain.mainnet],
+  [
+    chain.polygonMumbai,
+    chain.polygon,
+    chain.optimism,
+    chain.goerli,
+    chain.mainnet,
+  ],
 
   [infuraProvider({ apiKey: infuraId }), publicProvider()],
 );

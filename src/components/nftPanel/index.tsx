@@ -2,21 +2,21 @@ import { useMemo } from 'react';
 import useSWR from 'swr';
 import { useContractRead } from 'wagmi';
 
-import PromiseLand from '@/abis/PromiseLand.json';
+import usePromiseLandContractMeta from '@/hooks/usePromiseLandContractMeta';
 import IPost from '@/schemas/post';
 import { trimAddress } from '@/utils/helper';
 
 export default function NftPanel({ tokenId }: { tokenId: number }) {
+  const promiseLand = usePromiseLandContractMeta();
+
   const { data: uri, isLoading: isLoadingUri } = useContractRead({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
+    ...promiseLand,
     functionName: 'tokenURI',
     args: [tokenId],
   });
 
   const { data: nft } = useContractRead({
-    addressOrName: PromiseLand.address,
-    contractInterface: PromiseLand.abi,
+    ...promiseLand,
     functionName: 'fetchNftById',
     args: [tokenId],
   });
