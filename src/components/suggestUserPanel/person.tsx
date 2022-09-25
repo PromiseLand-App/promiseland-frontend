@@ -27,10 +27,14 @@ const Profile = ({ profile }: IProps) => {
           </a>
         </Link>
 
-        <div className="text-xs">
-          <h3 className="text-sm font-semibold">{profile.handle}</h3>
-          {profile.bio && <h4 className="opacity-50">{profile.bio}</h4>}
-        </div>
+        <Link href={`/profile/${profile.id}`}>
+          <a>
+            <div className="text-xs">
+              <h3 className="text-sm font-semibold">{profile.handle}</h3>
+              {profile.bio && <h4 className="opacity-50">{profile.bio}</h4>}
+            </div>
+          </a>
+        </Link>
       </div>
 
       <FollowButton profile={profile} />
