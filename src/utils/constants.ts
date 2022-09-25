@@ -11,8 +11,8 @@ export const LENSHUB_PROXY_ADDRESS_MAP = {
 };
 
 export const PROMISELAND_ADDRESS_MAP = {
-  [chain.goerli.id]: '0x18f026b9d50aeeca8029Ec3D3fBa29844691DAf1',
-  [chain.optimism.id]: '0xA1d54E6119015295Fd5F662f8f74D09A7B688E7Ay',
-  [chain.polygon.id]: '0xD22c813B9a2a65A5B562c22dFBF31fdd902C39fF',
+  [chain.goerli.id]: '0x6c5Db738D47f6A4004f6CA4db3CBc793339F303E',
+  [chain.optimism.id]: '0xf15f68FaAf12d01Be9A55a30b0bfEE646B9b90e0',
+  [chain.polygon.id]: '0xacD19aD32B617a18727BC90A42fB1f9c9973B4DE',
   [chain.polygonMumbai.id]: '0x0dE95bed0999Dc657D7BCea5617F72AEa2015321',
 };
