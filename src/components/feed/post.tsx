@@ -78,7 +78,7 @@ const PostItem = ({ item }: PostItemProps) => {
               </h2>
             </a>
           </Link>
-          <h2 className="text-xs font-semibold text-slate-500">just create</h2>
+          <h2 className="text-xs font-semibold text-slate-500">Just created</h2>
         </div>
       </div>
       {/* Posted Image */}

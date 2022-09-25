@@ -24,7 +24,7 @@ const Panel = () => {
         <section className="sticky top-[7rem] space-y-4">
           <div className="flex items-center justify-between">
             <h1 className="font-semibold opacity-50">
-              Suggestted Uers For You
+              Suggested Users For You
             </h1>
             <button>See All</button>
           </div>
