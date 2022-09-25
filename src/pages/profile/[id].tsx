@@ -113,7 +113,7 @@ export default function Profile() {
                 {/* Add publications here */}
               </div>
             </div>
-            <ProfileNFTs address={id as string} />
+            <ProfileNFTs address={profile.ownedBy as string} />
           </>
         ) : isWallet ? (
           <>
