@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { formatEther } from 'ethers/lib/utils';
 import Link from 'next/link';
 import { useMemo } from 'react';
@@ -17,7 +18,6 @@ import { trimAddress } from '@/utils/helper';
 
 import Image from '../Image';
 import LikeButton from '../LikeButton';
-import { Skeleton } from '@mui/material';
 
 interface PostItemProps {
   item: MarketItem;
@@ -63,7 +63,7 @@ const PostItem = ({ item }: PostItemProps) => {
   if (!post) return null;
 
   return (
-    <div className="relative mx-auto max-w-[30rem] space-y-4 rounded-lg border-[1px] border-gray-300 bg-white p-4 px-5 items-center">
+    <div className="relative mx-auto max-w-[30rem] items-center space-y-4 rounded-lg border-[1px] border-gray-300 bg-white p-4 px-5">
       {/* Heading */}
       {isLoadingUri || isLoadingMeta ? (
         <>
