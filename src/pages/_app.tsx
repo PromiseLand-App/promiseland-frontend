@@ -3,6 +3,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { SWRConfig } from 'swr';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
@@ -40,14 +41,22 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <LensGraphQLProvider>
-          <SWRConfig value={{ fetcher }}>
-            {isMounted && <Component {...pageProps} />}
-          </SWRConfig>
-        </LensGraphQLProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <>
+      <Head>
+        <meta
+          name="PromiseLand"
+          content="The decentralized Social NFT Marketplace"
+        />
+      </Head>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          <LensGraphQLProvider>
+            <SWRConfig value={{ fetcher }}>
+              {isMounted && <Component {...pageProps} />}
+            </SWRConfig>
+          </LensGraphQLProvider>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </>
   );
 }
