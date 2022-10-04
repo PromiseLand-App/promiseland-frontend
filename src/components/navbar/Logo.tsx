@@ -13,10 +13,10 @@ const Logo = () => {
         className="cursor-pointer"
       />
 
-      <span className="hidden bg-gradient-to-r from-orange-400 via-pink-500 to-sky-500 bg-clip-text px-2 text-lg font-extrabold text-transparent sm:block">
+      <span className="hidden bg-gradient-to-r from-orange-400 via-pink-500 to-sky-500 bg-clip-text px-2 text-lg font-extrabold text-transparent md:block">
         PromiseLand
       </span>
-      <h2 className="hidden font-bold text-gray-500 sm:block">(On Beta)</h2>
+      <h2 className="hidden font-bold text-gray-500 lg:block">(On Beta)</h2>
     </div>
   );
 };
