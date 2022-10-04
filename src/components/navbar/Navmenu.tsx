@@ -7,7 +7,7 @@ export default function Navmenu() {
   const { disconnect } = useDisconnect();
 
   return (
-    <Menu as="div" className="relative z-10 inline-block text-left">
+    <Menu as="div" className="hidden relative z-10 sm:inline-block text-left">
       <div>
         <Menu.Button className="inline-flex cursor-pointer items-center rounded-full px-2.5 py-2 text-sm font-medium text-gray-800 hover:text-gray-300 ">
           <p className="overflow-hidden text-ellipsis">Setting</p>

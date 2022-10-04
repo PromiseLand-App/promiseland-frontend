@@ -1,9 +1,9 @@
 import '@/styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
+import { StyledEngineProvider } from '@mui/material';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { SWRConfig } from 'swr';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
@@ -41,13 +41,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
-      <Head>
-        <meta
-          name="PromiseLand"
-          content="The decentralized Social NFT Marketplace"
-        />
-      </Head>
+    <StyledEngineProvider injectFirst>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
           <LensGraphQLProvider>
@@ -57,6 +51,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           </LensGraphQLProvider>
         </RainbowKitProvider>
       </WagmiConfig>
-    </>
+    </StyledEngineProvider>
   );
 }

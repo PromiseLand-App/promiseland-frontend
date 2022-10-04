@@ -17,12 +17,12 @@ export default function Navbar() {
   return (
     <div>
       {mounted && (
-        <header className="border-b-2 border-gray-100 bg-white">
+        <header className="  bg-white">
           <nav
             className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
             aria-label="Top"
           >
-            <div className="flex w-full flex-wrap items-center justify-between border-b border-indigo-500 py-4 lg:border-none">
+            <div className="flex w-full flex-wrap items-center justify-between py-4 lg:border-none">
               <div className="flex items-center ">
                 <Link href="/">
                   <a>
@@ -32,13 +32,13 @@ export default function Navbar() {
               </div>
               <div className="ml-10 flex items-center space-x-4">
                 <Link href="/explore">
-                  <a className="inline-flex items-center rounded-full px-3  text-sm font-medium  text-gray-800 hover:text-gray-300 ">
+                  <a className="hidden items-center rounded-full px-3 text-sm font-medium  text-gray-800 hover:text-gray-300 sm:inline-flex">
                     Explore
                   </a>
                 </Link>
                 {address && (
                   <Link href="/create">
-                    <a className="inline-flex items-center rounded-full  px-3  text-sm font-medium  text-gray-800 hover:text-gray-300 ">
+                    <a className="hidden items-center rounded-full px-3  text-sm  font-medium text-gray-800  hover:text-gray-300 sm:inline-flex ">
                       Create
                     </a>
                   </Link>

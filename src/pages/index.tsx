@@ -43,15 +43,15 @@ const Home: NextPage = () => {
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="/get-started"
+                className="block w-full rounded-lg border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                href="/create"
               >
-                Get Started
+                Start Creating
               </a>
 
               <a
-                className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-black hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-800 sm:w-auto"
-                href="/about"
+                className="block w-full rounded-lg border border-blue-600 px-12 py-3 text-sm font-medium text-black hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-800 sm:w-auto"
+                href="/explore"
               >
                 Explore
               </a>
@@ -256,7 +256,7 @@ const Home: NextPage = () => {
             <div className="flex justify-center gap-6">
               <a
                 className="text-blue-500 hover:text-blue-500/75"
-                href="/"
+                href="https://twitter.com/promiseland_app"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Twitter"
@@ -294,7 +294,7 @@ const Home: NextPage = () => {
 
               <a
                 className="text-pink-600 hover:text-pink-600/75"
-                href="/dribbble"
+                href="/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Dribbble"
