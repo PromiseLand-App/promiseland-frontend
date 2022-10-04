@@ -74,16 +74,6 @@ In PromiseLand, any user with a crypto wallet can post their favorite image like
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
-
-- IPFS
-- Polygon
-- Optimism
-- ENS
-- Lens
-- NFTPort
-- Worldcoin
-
 ### Support Chains
 
 - Polygon Mumbai
@@ -169,8 +159,6 @@ Don't forget to give the project a star! Thanks again!
 Bruce Wang - [@brucewangdev](https://twitter.com/brucewangdev) - brucewangyq@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
 
 ## Related Link
 

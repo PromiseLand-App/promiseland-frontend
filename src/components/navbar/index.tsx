@@ -31,14 +31,14 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="ml-10 flex items-center space-x-4">
-                <Link href="/">
-                  <a className="inline-flex items-center rounded-full px-3  text-sm font-medium  text-blue-500 hover:text-blue-300 ">
+                <Link href="/explore">
+                  <a className="inline-flex items-center rounded-full px-3  text-sm font-medium  text-gray-800 hover:text-gray-300 ">
                     Explore
                   </a>
                 </Link>
                 {address && (
                   <Link href="/create">
-                    <a className="inline-flex items-center rounded-full  px-3  text-sm font-medium  text-blue-500 hover:text-blue-300 ">
+                    <a className="inline-flex items-center rounded-full  px-3  text-sm font-medium  text-gray-800 hover:text-gray-300 ">
                       Create
                     </a>
                   </Link>

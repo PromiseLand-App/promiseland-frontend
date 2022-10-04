@@ -4,7 +4,7 @@ import logo from '@/assets/images/logo.png';
 
 const Logo = () => {
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <Image
         src={logo}
         alt="PromiseLand Logo"
@@ -12,9 +12,10 @@ const Logo = () => {
         width={27}
         className="cursor-pointer"
       />
-      <span className="bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-500 bg-clip-text px-2 text-lg font-extrabold text-transparent">
+      <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-sky-500 bg-clip-text px-2 text-lg font-extrabold text-transparent">
         PromiseLand
       </span>
+      <h2 className="font-bold text-gray-500">(On Beta)</h2>
     </div>
   );
 };
