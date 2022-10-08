@@ -167,7 +167,7 @@ const PostItem = ({ item }: PostItemProps) => {
               type="text"
               placeholder="Add a comment (Coming soon)"
             />
-            <button className="text-blue-500">Post</button>
+            <button className="text-blue-500">Comment</button>
           </div>
         </>
       )}

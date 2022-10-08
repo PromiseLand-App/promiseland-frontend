@@ -27,8 +27,8 @@ export default function ProfileNFTs({ address }: { address: string }) {
     <Tab.Group as="div" className="w-full">
       <Tab.List as="div" className="my-4 flex justify-center gap-4">
         <Tab className={makeTabClasses}>Created</Tab>
-        <Tab className={makeTabClasses}>Brought</Tab>
-        {isSupportedChain && <Tab className={makeTabClasses}>Owned</Tab>}
+        <Tab className={makeTabClasses}>Owned</Tab>
+        {isSupportedChain && <Tab className={makeTabClasses}>All NFTs</Tab>}
       </Tab.List>
       <Tab.Panels>
         <Tab.Panel>

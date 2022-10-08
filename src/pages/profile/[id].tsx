@@ -13,26 +13,6 @@ import { getProfilesByAddress } from '@/graphql/GetProfilesByAddress';
 import useIsLensSupported from '@/hooks/useIsLensSupported';
 import { queryParamStringParser, useQueryParam } from '@/hooks/useQueryParam';
 
-const WorldIDWidget = dynamic<WidgetProps>(
-  () => import('@worldcoin/id').then((mod) => mod.WorldIDWidget),
-  { ssr: false },
-);
-
-const widgetProps: WidgetProps = {
-  actionId: 'wid_staging_PCNQeDC5CX',
-  signal: 'user-id-1',
-  enableTelemetry: true,
-  appName: 'ConfCon',
-  signalDescription: 'Get your ticket to ConfCon 2023',
-  theme: 'dark',
-  debug: true, // Recommended **only** for development
-  onSuccess: (result) => console.log(result),
-  onError: ({ code, detail }) => console.log({ code, detail }),
-  onInitSuccess: () => console.log('Init successful'),
-  onInitError: (error) =>
-    console.log('Error while initialization World ID', error),
-};
-
 export default function Profile() {
   const id = useQueryParam('id', queryParamStringParser);
   const isLensSupported = useIsLensSupported();
@@ -70,7 +50,7 @@ export default function Profile() {
           <>
             <div className="flex w-full flex-wrap items-start md:flex-nowrap">
               <div className="mb-4 w-full md:mr-8 md:w-auto">
-                <div className="mx-auto h-60 w-60 rounded bg-emerald-900">
+                <div className="mx-auto h-60 w-60 rounded bg-blue-800">
                   {profile?.picture?.original?.url && (
                     <Image
                       src={profile?.picture?.original.url}
@@ -106,7 +86,7 @@ export default function Profile() {
                       Following
                     </p>
                   </div>
-                  <WorldIDWidget {...widgetProps} />
+
                   <p className="mb-4">{profile.bio}</p>
                   {/* Add connect and follow buttons here */}
                 </div>
@@ -136,7 +116,7 @@ export default function Profile() {
                       Following
                     </p>
                   </div>
-                  <WorldIDWidget {...widgetProps} />
+
                   {/* Add connect and follow buttons here */}
                 </div>
                 {/* Add publications here */}

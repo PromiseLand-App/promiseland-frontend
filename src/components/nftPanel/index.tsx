@@ -98,6 +98,17 @@ export default function NftPanel({ tokenId }: { tokenId: number }) {
             </a>
           )}
         </div>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          className="my-8 rounded-lg bg-blue-500 p-2 hover:bg-blue-300"
+          href={
+            'https://testnets.opensea.io/assets/mumbai/0x0de95bed0999dc657d7bcea5617f72aea2015321/' +
+            tokenId
+          }
+        >
+          <button className="my-8 text-white">View on OpenSea</button>
+        </a>
 
         <div className="my-2">
           {nft?.owner == address ? (
