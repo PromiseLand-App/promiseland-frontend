@@ -1,7 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { WidgetProps } from '@worldcoin/id';
 import { getAddress, isAddress } from 'ethers/lib/utils';
-import dynamic from 'next/dynamic';
 import { SpinnerCircular } from 'spinners-react';
 
 import Image from '@/components/Image';
