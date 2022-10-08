@@ -294,7 +294,7 @@ const Home: NextPage = () => {
 
               <a
                 className="text-pink-600 hover:text-pink-600/75"
-                href="/"
+                href="https://discord.gg/7JE46nYa"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Dribbble"
@@ -358,7 +358,7 @@ const Home: NextPage = () => {
                 <li>
                   <a
                     className="text-gray-900 transition hover:text-gray-900/75"
-                    href="/"
+                    href="mailto: bruce@promiseland.app"
                     target="_blank"
                     rel="noreferrer"
                   >
